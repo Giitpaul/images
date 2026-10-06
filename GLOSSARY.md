@@ -19,3 +19,11 @@ _À éviter_ : erreur, raté, faux départ
 **Signal de reprise** :
 La phrase « je reprends », dite par Paul juste après une prise ratée pour la marquer.
 _À éviter_ : marqueur, top
+
+**Démo** :
+Un passage où Paul joue de l'harmonica. Une démo n'est jamais coupée sans validation de Paul.
+_À éviter_ : solo, exemple joué, passage musical
+
+**Coupe proposée** :
+Un passage que l'outil suggère de retirer. Il n'est retiré qu'après validation de Paul.
+_À éviter_ : coupe automatique
