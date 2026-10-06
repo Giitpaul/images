@@ -9,7 +9,7 @@ Prochaine étape : `/grill-with-docs`, première série de questions en attente 
 3. Façon de rater une prise : Paul dira « je reprends ». RÉPONDU.
 4. Démo ratée : oui c est une prise ratée, mais toute coupe de démo est proposée, jamais faite seule. RÉPONDU.
 5. Sortie finale : MP4 prêt à publier. RÉPONDU.
-6. Où vit l'outil. Reco : dépôt dédié (ex. `monteur-harmonica`).
+6. Où vit l outil : dépôt dédié monteur-harmonica, créé par Paul. Tout y sera déplacé. RÉPONDU.
 7. Transcription locale (lente, gratuite) ou ElevenLabs Scribe (audio seul envoyé, quelques centimes, garde les « euh »). Reco : Scribe, local en secours.
 8. Moteur de rendu. Reco : Remotion (natif sous Windows, déjà utilisé par les skills de Paul). HyperFrames moins fiable hors Linux.
 9. Tournage : un seul fichier ou plusieurs clips, son de la caméra ou micro séparé, durée brute typique. Reco : un seul fichier avec le son déjà dedans.
