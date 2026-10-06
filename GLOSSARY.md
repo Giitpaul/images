@@ -27,3 +27,7 @@ _À éviter_ : solo, exemple joué, passage musical
 **Coupe proposée** :
 Un passage que l'outil suggère de retirer. Il n'est retiré qu'après validation de Paul.
 _À éviter_ : coupe automatique
+
+**Vidéo montée** :
+Le MP4 final, prêt à publier sur YouTube, sans passage par un logiciel de montage.
+_À éviter_ : export, rendu final
