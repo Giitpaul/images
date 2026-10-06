@@ -4,7 +4,7 @@ Outil qui transforme une vidéo brute en vidéo montée : coupe des silences et 
 
 ## Workflow
 
-1. `/grill-with-docs` avec le rapport de recherche (`docs/research/`)
+1. `/grill-with-docs` avec le rapport de recherche (`reports/`)
 2. `/to-spec` puis `/to-tickets` dans la même conversation
 3. `/clear`, puis `/implement <ticket>` et `/clear` entre chaque ticket
 
