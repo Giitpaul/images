@@ -1,0 +1,29 @@
+{
+  "name": "montage-video-auto",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Montage vidéo automatique : coupe des silences, transcription ElevenLabs, motion design Remotion, musique, bruitages et relecture.",
+  "type": "module",
+  "bin": {
+    "montage": "bin/montage.js"
+  },
+  "scripts": {
+    "montage": "node bin/montage.js",
+    "test": "node test/run-test.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@googleapis/youtube": "39.0.1",
+    "@remotion/bundler": "4.0.530",
+    "@remotion/fonts": "4.0.530",
+    "@remotion/renderer": "4.0.530",
+    "dotenv": "16.4.5",
+    "google-auth-library": "9.15.1",
+    "pngjs": "7.0.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.530"
+  }
+}

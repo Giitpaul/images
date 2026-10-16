@@ -1,0 +1,92 @@
+{
+  "fps": 30,
+  "formats": [
+    "16:9",
+    "9:16"
+  ],
+  "silence": {
+    "noiseDb": -35,
+    "minSilence": 0.45,
+    "padding": 0.12,
+    "minKeep": 0.3,
+    "fadeMs": 12
+  },
+  "transcription": {
+    "provider": "elevenlabs",
+    "model": "scribe_v1",
+    "language": "fra",
+    "tagAudioEvents": true
+  },
+  "voiceover": {
+    "model": "eleven_multilingual_v2",
+    "voiceId": ""
+  },
+  "spec": {
+    "maxWordsPerPhrase": 12,
+    "phraseGap": 0.35,
+    "sceneMaxSeconds": 18,
+    "harmonicaMinGap": 1.4,
+    "defaultMood": "fun",
+    "keywords": [],
+    "title": ""
+  },
+  "subtitles": {
+    "maxCharsPerLine": {
+      "16:9": 34,
+      "9:16": 18
+    },
+    "maxLines": 2,
+    "maxCps": 20,
+    "minDuration": 0.6,
+    "uppercase": false
+  },
+  "segmentation": {
+    "enabled": true,
+    "engine": "mediapipe",
+    "smoothing": 0.6,
+    "threshold": 0.5
+  },
+  "render": {
+    "crf": 18,
+    "concurrency": null,
+    "focusX": 0.5,
+    "zoomStrength": 0.12
+  },
+  "audio": {
+    "musicDir": "",
+    "musicDb": -16,
+    "sfxDb": -10,
+    "sfx": true,
+    "targetLufs": -14,
+    "truePeak": -1.5,
+    "duck": {
+      "threshold": 0.03,
+      "ratio": 8,
+      "attack": 20,
+      "release": 450
+    },
+    "muteMusicOnHarmonica": true
+  },
+  "review": {
+    "minPasses": 3,
+    "maxPasses": 6,
+    "framesPerFormat": 9,
+    "minContrast": 4.5,
+    "lufsTolerance": 1.0
+  },
+  "publish": {
+    "privacy": "unlisted",
+    "categoryId": "27",
+    "language": "fr",
+    "formats": [
+      "16:9"
+    ],
+    "tags": [
+      "harmonica",
+      "apprendre l'harmonica",
+      "cours d'harmonica",
+      "harmonica diatonique"
+    ],
+    "footer": "🎵 Cours, tablatures et backing tracks : https://www.apprendrelharmonica.com\n🎯 Entraîne-toi avec l'appli : https://www.harmonicatrainer.com\n❤️ Soutiens la chaîne sur Patreon : https://www.patreon.com/cw/apprendrelharmonica\n📷 Instagram : https://www.instagram.com/paul.lassey/"
+  }
+}

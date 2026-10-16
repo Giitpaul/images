@@ -1,0 +1,30 @@
+{
+  "_source": "Couleurs tirées du logo apprendrelharmonica.com. Remplacé automatiquement si une charte est détectée dans ton projet Remotion (commande : montage charte --projet <dossier>).",
+  "name": "Apprendre l'harmonica",
+  "site": "apprendrelharmonica.com",
+  "logo": "assets/logo.png",
+  "colors": {
+    "primary": "#A6231F",
+    "secondary": "#5B2C1C",
+    "accent": "#F2B33D",
+    "light": "#FFF6E5",
+    "dark": "#141010",
+    "subtitleBg": "rgba(20, 16, 16, 0.78)"
+  },
+  "fonts": {
+    "title": {
+      "family": "Luckiest Guy",
+      "file": "assets/fonts/LuckiestGuy.woff2",
+      "weight": "400"
+    },
+    "text": {
+      "family": "Montserrat",
+      "file": "assets/fonts/Montserrat-800.woff2",
+      "weight": "800"
+    }
+  },
+  "cta": {
+    "line1": "Abonne-toi !",
+    "line2": "apprendrelharmonica.com"
+  }
+}
