@@ -89,6 +89,8 @@ def main():
     ap.add_argument("--lissage", type=float, default=0.6)
     ap.add_argument("--seuil", type=float, default=0.5)
     ap.add_argument("--ffmpeg", default="ffmpeg")
+    ap.add_argument("--occupation", default=None, help="JSON : où se trouve la personne pendant les premières secondes")
+    ap.add_argument("--occupation-secondes", type=float, default=4.0)
     a = ap.parse_args()
 
     cap = cv2.VideoCapture(a.entree)
@@ -103,6 +105,9 @@ def main():
     gen = mediapipe_masks(cap, a.modele) if a.moteur == "mediapipe" else rvm_masks(cap, a.rvm_variante)
     prev = None
     coverage = []
+    occ = None
+    occ_n = 0
+    OCC_W, OCC_H = 24, 24
     for n, (rgb, m) in enumerate(gen):
         # RVM produit déjà un alpha fin : lissage temporel léger seulement.
         if a.moteur == "rvm":
@@ -111,6 +116,10 @@ def main():
         else:
             prev, alpha = soften(m, prev, a.lissage, a.seuil)
         coverage.append(float(alpha.mean()))
+        if n < a.occupation_secondes * fps:
+            small = cv2.resize(alpha.astype(np.float32), (OCC_W, OCC_H), interpolation=cv2.INTER_AREA)
+            occ = small if occ is None else occ + small
+            occ_n += 1
         rgba = np.dstack([rgb, (alpha * 255).astype(np.uint8)])
         writer.stdin.write(rgba.tobytes())
         if n % 150 == 0:
@@ -118,6 +127,10 @@ def main():
     writer.stdin.close()
     if writer.wait() != 0:
         sys.exit("FFmpeg a échoué pendant l'encodage WebM")
+    if a.occupation and occ is not None:
+        import json
+        with open(a.occupation, "w", encoding="utf-8") as f:
+            json.dump({"cols": OCC_W, "rows": OCC_H, "width": w, "height": h, "grid": np.round(occ / occ_n, 3).tolist()}, f)
     cov = np.array(coverage) if coverage else np.zeros(1)
     print(f"COUVERTURE moyenne={cov.mean():.3f} min={cov.min():.3f} max={cov.max():.3f}", flush=True)
 

@@ -7,6 +7,8 @@ import { LowerThird } from './components/LowerThird.jsx';
 import { HarmonicaBadge } from './components/HarmonicaBadge.jsx';
 import { Cta } from './components/Cta.jsx';
 import { Flash } from './components/Flash.jsx';
+import { TabRibbon } from './components/TabRibbon.jsx';
+import { ProgressBar } from './components/ProgressBar.jsx';
 
 const ease = Easing.bezier(0.22, 1, 0.36, 1);
 
@@ -28,14 +30,23 @@ function cameraScale(frame, zooms, transitions) {
   return s;
 }
 
-const Camera = ({ src, transparent, focusX, scale, trimBefore }) => (
+// fit « cover » : l'image remplit le cadre. fit « contain » (vidéo verticale en 16:9) : image entière sur fond flouté.
+const Camera = ({ src, transparent, focusX, scale, trimBefore, fit = 'cover', backdrop = true }) => (
   <AbsoluteFill style={{ transform: `scale(${scale})`, transformOrigin: `${focusX * 100}% 45%` }}>
+    {fit === 'contain' && backdrop ? (
+      <OffthreadVideo
+        src={staticFile(src)}
+        muted
+        trimBefore={trimBefore || undefined}
+        style={{ position: 'absolute', width: '100%', height: '100%', objectFit: 'cover', filter: 'blur(40px) brightness(0.55)', transform: 'scale(1.15)' }}
+      />
+    ) : null}
     <OffthreadVideo
       src={staticFile(src)}
       muted
       transparent={transparent}
       trimBefore={trimBefore || undefined}
-      style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: `${focusX * 100}% 50%` }}
+      style={{ position: 'absolute', width: '100%', height: '100%', objectFit: fit, objectPosition: `${focusX * 100}% 50%` }}
     />
   </AbsoluteFill>
 );
@@ -47,18 +58,20 @@ export const Montage = (props) => {
   const transitions = elements.filter((e) => e.type === 'transition');
   const scale = cameraScale(frame, zooms, transitions);
   const vertical = height > width;
-  const ui = { brand, fonts, width, height, vertical };
+  const ui = { brand, fonts, width, height, vertical, bands: layout?.bands ?? null };
   const behind = elements.filter((e) => e.type === 'titleBehind');
+  const fit = video.fit ?? 'cover';
 
   return (
     <AbsoluteFill style={{ backgroundColor: brand.colors.dark ?? '#000' }}>
-      {video.src ? <Camera src={video.src} focusX={video.focusX} scale={scale} /> : null}
+      {video.src ? <Camera src={video.src} focusX={video.focusX} scale={scale} fit={fit} /> : null}
 
       {/* Textes placés derrière la personne : on les dessine, puis on repose la personne détourée par-dessus. */}
       {behind.map((e, i) => (
         <Sequence key={`tb${i}`} from={e.from} durationInFrames={e.to - e.from} layout="none">
-          <TitleBehind {...ui} text={e.text} duration={e.to - e.from} />
-          {video.fg ? <Camera src={video.fg} transparent trimBefore={e.from} focusX={video.focusX} scale={scale} /> : null}
+          <TitleBehind {...ui} part="lines" place={e.place} duration={e.to - e.from} />
+          {video.fg && !layout?.bands ? <Camera src={video.fg} transparent trimBefore={e.from} focusX={video.focusX} scale={scale} fit={fit} backdrop={false} /> : null}
+          <TitleBehind {...ui} part="sub" place={e.place} sub={e.sub} duration={e.to - e.from} />
         </Sequence>
       ))}
 
@@ -68,6 +81,8 @@ export const Montage = (props) => {
         if (e.type === 'keyword') node = <KeywordPop {...ui} text={e.text} side={e.side} duration={dur} />;
         else if (e.type === 'lowerThird') node = <LowerThird {...ui} duration={dur} />;
         else if (e.type === 'harmonicaBadge') node = <HarmonicaBadge {...ui} text={e.text} duration={dur} />;
+        else if (e.type === 'tab') node = <TabRibbon {...ui} notes={e.notes} label={e.label} duration={dur} />;
+        else if (e.type === 'progress') node = <ProgressBar {...ui} duration={dur} />;
         else if (e.type === 'cta') node = <Cta {...ui} line1={e.line1} line2={e.line2} duration={dur} />;
         if (!node) return null;
         return (

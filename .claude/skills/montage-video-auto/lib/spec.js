@@ -82,9 +82,24 @@ function moodOf(text, fallback) {
   return best;
 }
 
-export function buildSpec({ words, events = [], duration, cfg, title }) {
+/** Titre automatique d'un passage joué : « Riff blues en sol » si on entend la tierce et la septième mineures. */
+function autoPlayTitle(tab) {
+  if (!tab?.harp) return 'À L’HARMONICA';
+  const tonic = tab.notes[tab.notes.length - 1].midi % 12;
+  const pcs = new Set(tab.notes.map((n) => (((n.midi - tonic) % 12) + 12) % 12));
+  const blues = pcs.has(3) && pcs.has(10);
+  return `${blues ? 'RIFF BLUES' : 'MÉLODIE'} EN ${tab.harp.tonicFr.toUpperCase()}`;
+}
+
+export function buildSpec({ words, events = [], duration, cfg, title, tab = null }) {
   const sp = cfg.spec;
   const harmonica = detectHarmonica(words, events, duration, sp.harmonicaMinGap);
+  // Mode « jeu » : la vidéo est surtout de l'harmonica joué, sans parole.
+  const playTime = harmonica.reduce((s, h) => s + h.end - h.start, 0);
+  const mode = words.length < 5 || playTime / Math.max(duration, 0.1) >= 0.6 ? 'jeu' : 'parole';
+  const tabNotes = tab?.notes ?? [];
+  const harpLabel = tab?.harp ? `Harmonica en ${tab.harp.keyFr} · ${tab.harp.position ?? '?'}e position` : '';
+  if (mode === 'jeu') return buildPlaySpec({ words, events, duration, cfg, title, tab, tabNotes, harmonica, harpLabel });
   const phrases = buildPhrases(words, harmonica, sp);
   const userKeywords = new Set((sp.keywords ?? []).map(clean));
 
@@ -164,7 +179,9 @@ export function buildSpec({ words, events = [], duration, cfg, title }) {
   });
 
   for (const h of harmonica) {
-    elements.push({ type: 'harmonicaBadge', start: h.start, end: h.end, text: '♪ À l’harmonica' });
+    const inside = tabNotes.filter((n) => n.start >= h.start - 0.1 && n.end <= h.end + 0.1);
+    if (inside.length >= 3) elements.push({ type: 'tab', start: h.start, end: h.end, label: harpLabel, notes: inside });
+    else elements.push({ type: 'harmonicaBadge', start: h.start, end: h.end, text: '♪ À l’harmonica' });
     elements.push({ type: 'zoom', start: h.start, end: h.end, scale: 1 + cfg.render.zoomStrength * 0.6, slow: true });
   }
 
@@ -183,6 +200,8 @@ export function buildSpec({ words, events = [], duration, cfg, title }) {
 
   return {
     version: 1,
+    mode,
+    harp: tab?.harp ?? null,
     duration: round3(duration),
     title: videoTitle,
     words,
@@ -193,5 +212,38 @@ export function buildSpec({ words, events = [], duration, cfg, title }) {
     music,
     elements: finalElements,
     sfx: sfx.sort((a, b) => a.at - b.at),
+  };
+}
+
+/** Spec d'une vidéo jouée : titre derrière la personne, tablature en direct, barre de progression, appel final. Pas de musique ajoutée. */
+function buildPlaySpec({ words, events, duration, cfg, title, tab, tabNotes, harmonica, harpLabel }) {
+  const videoTitle = title || cfg.spec.title || autoPlayTitle(tab);
+  const elements = [];
+  const sfx = [{ type: 'whoosh', at: 0.02 }];
+  const ctaLen = duration > 8 ? Math.min(2.8, duration * 0.22) : 0;
+  const ctaStart = round3(duration - ctaLen);
+  elements.push({ type: 'titleBehind', start: 0.1, end: round3(Math.min(3.2, duration * 0.3)), text: videoTitle, sub: harpLabel });
+  if (tabNotes.length >= 3) {
+    elements.push({ type: 'tab', start: round3(Math.max(0, tabNotes[0].start - 0.4)), end: ctaLen ? ctaStart : duration, label: harpLabel, notes: tabNotes });
+  } else {
+    elements.push({ type: 'harmonicaBadge', start: 0.3, end: ctaLen ? ctaStart : duration, text: '♪ À l’harmonica' });
+  }
+  elements.push({ type: 'progress', start: 0, end: duration });
+  elements.push({ type: 'zoom', start: 0, end: duration, scale: 1 + cfg.render.zoomStrength * 0.5, slow: true });
+  if (ctaLen) elements.push({ type: 'cta', start: ctaStart, end: duration, line1: cfg.brand.cta.line1, line2: cfg.brand.cta.line2 });
+  return {
+    version: 1,
+    mode: 'jeu',
+    harp: tab?.harp ?? null,
+    duration: round3(duration),
+    title: videoTitle,
+    words,
+    events,
+    harmonica,
+    phrases: [],
+    scenes: [{ id: 0, start: 0, end: round3(duration), phrases: [], mood: 'profond' }],
+    music: [],
+    elements: elements.sort((a, b) => a.start - b.start),
+    sfx,
   };
 }

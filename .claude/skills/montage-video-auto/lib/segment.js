@@ -16,12 +16,13 @@ async function ensureModel() {
   return p;
 }
 
-export async function segmentPerson({ input, out, engine, smoothing, threshold }) {
+export async function segmentPerson({ input, out, engine, smoothing, threshold, occupation }) {
   const args = [
     path.join(SKILL_DIR, 'scripts', 'segment_person.py'),
     '--entree', input, '--sortie', out, '--moteur', engine,
     '--lissage', String(smoothing), '--seuil', String(threshold), '--ffmpeg', ffmpegBin(),
   ];
+  if (occupation) args.push('--occupation', occupation);
   if (engine === 'mediapipe') args.push('--modele', await ensureModel());
   log('detourage', `Détourage ${engine === 'rvm' ? 'Robust Video Matting' : 'MediaPipe Selfie Segmentation'}…`);
   const { stdout } = await run(pythonBin(), args);

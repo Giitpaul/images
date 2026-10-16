@@ -1,14 +1,18 @@
 import { AbsoluteFill, Img, staticFile, useCurrentFrame, useVideoConfig, spring } from 'remotion';
 
 // Appel à l'action de fin : logo + abonnement + site.
-export const Cta = ({ line1, line2, brand, fonts, width, height, vertical }) => {
+export const Cta = ({ line1, line2, brand, fonts, width, height, vertical, bands }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const enter = spring({ frame, fps, config: { damping: 12 } });
   const pulse = 1 + Math.sin(frame / 6) * 0.025;
-  const unit = vertical ? width : height;
+  // En bandes (vidéo verticale en 16:9) : dans la bande de droite. En 9:16 : en bas, sous les mains.
+  const unit = bands ? (bands.right[1] - bands.right[0]) * width : vertical ? width : height;
+  const pos = bands
+    ? { justifyContent: 'center', alignItems: 'center', paddingLeft: bands.right[0] * width }
+    : { justifyContent: 'flex-end', alignItems: 'center', paddingBottom: vertical ? height * 0.12 : height * 0.3 };
   return (
-    <AbsoluteFill style={{ justifyContent: 'flex-end', alignItems: 'center', paddingBottom: vertical ? height * 0.38 : height * 0.3 }}>
+    <AbsoluteFill style={pos}>
       <div style={{ display: 'flex', alignItems: 'center', gap: unit * 0.03, transform: `translateY(${(1 - enter) * height * 0.4}px)` }}>
         {brand.logo ? <Img src={staticFile(brand.logo)} style={{ width: unit * 0.2, height: unit * 0.2, objectFit: 'contain' }} /> : null}
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: unit * 0.012 }}>

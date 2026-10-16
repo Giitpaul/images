@@ -22,7 +22,7 @@ python --version   # 3.10 à 3.12
 ## 2. Le détourage (Python)
 
 ```powershell
-python -m pip install mediapipe opencv-python numpy
+python -m pip install mediapipe opencv-python numpy librosa
 ```
 
 Option Robust Video Matting (plus fin, plus lent, utile surtout avec une carte NVIDIA) :

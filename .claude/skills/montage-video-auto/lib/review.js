@@ -196,7 +196,14 @@ async function passVisuel(ctx, out) {
 
     // Vignettes des moments clés : titre derrière la personne, mots-clés, appel à l'action.
     const keyEls = tl.elements.filter((e) => ['titleBehind', 'keyword', 'cta', 'harmonicaBadge'].includes(e.type));
-    for (const e of keyEls.slice(0, 6)) {
+    // Tablature : trois vignettes réparties sur le passage joué.
+    for (const e of tl.elements.filter((x) => x.type === 'tab')) {
+      for (const k of [0.25, 0.5, 0.75]) {
+        const n = e.notes[Math.floor(e.notes.length * k)];
+        if (n) keyEls.push({ ...e, from: e.from + n.from, to: e.from + n.to, text: `tab ${n.tab}` });
+      }
+    }
+    for (const e of keyEls.slice(0, 9)) {
       const t = (e.from + Math.min(18, (e.to - e.from) / 2)) / tl.fps;
       const jpg = path.join(dir, `${e.type}_${id}_${e.from}.jpg`);
       await ffmpeg(['-ss', t.toFixed(3), '-i', file, '-frames:v', '1', '-q:v', '3', jpg]);

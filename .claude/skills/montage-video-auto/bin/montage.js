@@ -14,9 +14,10 @@ import { renderFormat, stageBrandAssets, resetBundle } from '../lib/render.js';
 import { buildMix, muxFinal } from '../lib/audio.js';
 import { reviewPass, PASSES } from '../lib/review.js';
 import { saveDetectedBrand } from '../lib/brand.js';
+import { detectTab } from '../lib/tab.js';
 import { authorize, buildMetadata, publish } from '../lib/publish.js';
 
-const STEPS = ['prepare', 'transcription', 'decoupe', 'spec', 'timeline', 'detourage', 'render', 'audio', 'relecture', 'publication'];
+const STEPS = ['prepare', 'transcription', 'decoupe', 'notes', 'spec', 'detourage', 'timeline', 'render', 'audio', 'relecture', 'publication'];
 
 const AIDE = `
 montage-video-auto : montage automatique d'une vidéo face caméra.
@@ -35,6 +36,8 @@ Options du montage :
   --depuis <étape>          Reprend à une étape : ${STEPS.join(', ')}
   --jusqua <étape>          S'arrête après cette étape
   --moteur mediapipe|rvm    Moteur de détourage
+  --sans-parole             Vidéo jouée sans parole : pas de transcription
+  --harmo <tonalité>        Tonalité de l'harmonica pour la tab (C, G, A, Bb…). Défaut : déduite des notes
   --sans-detourage          Pas de détourage (titre d'ouverture devant la personne)
   --sans-musique            Pas de musique
   --sans-bruitages          Pas de bruitages
@@ -56,6 +59,7 @@ async function main() {
       transcription: { type: 'string' }, depuis: { type: 'string' }, jusqua: { type: 'string' }, moteur: { type: 'string' },
       'sans-detourage': { type: 'boolean' }, 'sans-musique': { type: 'boolean' }, 'sans-bruitages': { type: 'boolean' },
       'mots-cles': { type: 'string' }, config: { type: 'string' }, passes: { type: 'string' },
+      'sans-parole': { type: 'boolean' }, harmo: { type: 'string' },
       'sans-publication': { type: 'boolean' }, simulation: { type: 'boolean' }, 'titre-youtube': { type: 'string' }, description: { type: 'string' },
       texte: { type: 'string' }, voix: { type: 'string' }, projet: { type: 'string' }, aide: { type: 'boolean', short: 'h' },
     },
@@ -96,6 +100,7 @@ async function main() {
   if (o['sans-bruitages']) cli.audio = { ...(cli.audio ?? {}), sfx: false };
   if (o.moteur) cli.segmentation = { engine: o.moteur };
   if (o['sans-detourage']) cli.segmentation = { ...(cli.segmentation ?? {}), enabled: false };
+  if (o.harmo) cli.harmo = o.harmo;
   if (o.passes) cli.review = { maxPasses: Math.max(3, Number(o.passes)) };
   // Les options de la ligne de commande sont gardées pour les reprises (--depuis).
   const cliFile = path.join(workDir, 'options.json');
@@ -123,7 +128,9 @@ async function main() {
       writeJson(P('01_analyse.json'), { info: a.info, silences: a.silences, openEnd: a.openEnd });
     },
     async transcription() {
-      const t = o.transcription
+      const t = o['sans-parole']
+        ? { language: 'fr', text: '', words: [], events: [] }
+        : o.transcription
         ? importTranscript(path.resolve(o.transcription))
         : await transcribe(P('01_stt.wav'), cfg.transcription, workDir);
       writeJson(P('02_transcript.source.json'), t);
@@ -137,13 +144,19 @@ async function main() {
       const ev = remapWords(t.events ?? [], r.keeps).words;
       writeJson(P('02_transcript.json'), { language: t.language, duration: r.duration, words: r.words, events: ev });
     },
+    async notes() {
+      const r = await detectTab({ workDir, wav: P('01_voice.wav'), forcedKey: o.harmo ?? mergedCli.harmo });
+      writeJson(P('02_notes.json'), r ?? { notes: [], harp: null });
+    },
     async spec() {
       const t = readJson(P('02_transcript.json'));
+      const tab = exists(P('02_notes.json')) ? readJson(P('02_notes.json')) : null;
       const old = exists(P('03_spec.json')) ? readJson(P('03_spec.json')) : null;
       if (old?.locked) { log('spec', '03_spec.json verrouillé (locked: true) : gardé tel quel.'); return; }
-      const spec = buildSpec({ words: t.words, events: t.events, duration: t.duration, cfg, title: cfg.spec.title });
+      const spec = buildSpec({ words: t.words, events: t.events, duration: t.duration, cfg, title: cfg.spec.title, tab });
       if (old?.voiceovers) spec.voiceovers = old.voiceovers;
       writeJson(P('03_spec.json'), spec);
+      if (spec.mode === 'jeu') { log('spec', `Mode jeu : « ${spec.title} », ${spec.elements.find((e) => e.type === 'tab')?.notes.length ?? 0} notes en tablature, pas de musique ajoutée`); return; }
       log('spec', `${spec.scenes.length} scène(s), ${spec.phrases.length} phrase(s), ${spec.phrases.filter((p) => p.keyword).length} mot(s)-clé(s), ${spec.harmonica.length} passage(s) d'harmonica, ambiances : ${spec.music.map((m) => m.mood).join(' → ')}`);
     },
     async timeline() {
@@ -152,7 +165,8 @@ async function main() {
       const brand = stageBrandAssets(workDir, cfg.brand);
       const matte = cfg.segmentation.enabled ? '05_fg.webm' : null;
       for (const fmt of cfg.formats) {
-        const tl = buildTimeline(spec, fmt, cfg, { matte, srcWidth: cut.width, srcHeight: cut.height, logo: brand.logo });
+        const occupation = exists(P('05_occupation.json')) ? readJson(P('05_occupation.json')) : null;
+        const tl = buildTimeline(spec, fmt, cfg, { matte, srcWidth: cut.width, srcHeight: cut.height, logo: brand.logo, occupation });
         tl.brand = { ...tl.brand, ...brand };
         writeJson(P(`04_timeline.${formatInfo(fmt).id}.json`), tl);
         log('timeline', `${fmt} : ${tl.durationInFrames} frames, ${tl.subtitles.length} sous-titres, ${tl.elements.length} éléments`);
@@ -165,7 +179,7 @@ async function main() {
         return;
       }
       try {
-        const r = await segmentPerson({ input: P('01_cut.mp4'), out: P('05_fg.webm'), engine: cfg.segmentation.engine, smoothing: cfg.segmentation.smoothing, threshold: cfg.segmentation.threshold });
+        const r = await segmentPerson({ input: P('01_cut.mp4'), out: P('05_fg.webm'), engine: cfg.segmentation.engine, smoothing: cfg.segmentation.smoothing, threshold: cfg.segmentation.threshold, occupation: P('05_occupation.json') });
         writeJson(P('05_detourage.json'), r);
       } catch (e) {
         // Le montage continue sans détourage : le titre d'ouverture passe devant la personne.
