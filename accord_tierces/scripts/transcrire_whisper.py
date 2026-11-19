@@ -37,7 +37,10 @@ def main():
     texte = (RACINE / "voix_off_paul.txt").read_text(encoding="utf-8")
     texte = texte.replace("(pause longue)", "").replace("(pause)", "")
 
-    modele = WhisperModel("small", device="cpu", compute_type="int8", download_root=str(dossier))
+    # Modèle déjà présent dans le dossier (copie locale) : on l'utilise sans téléchargement.
+    local = dossier / "small"
+    source = str(local) if (local / "model.bin").exists() else "small"
+    modele = WhisperModel(source, device="cpu", compute_type="int8", download_root=str(dossier))
     segments, _ = modele.transcribe(
         str(AUDIO), language="fr", word_timestamps=True, initial_prompt=texte, vad_filter=False
     )
