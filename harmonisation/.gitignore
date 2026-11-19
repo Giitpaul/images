@@ -1,0 +1,6 @@
+__pycache__/
+node_modules/
+public/audio.wav
+public/mix.wav
+public/notes.wav
+verification/
