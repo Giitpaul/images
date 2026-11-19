@@ -140,9 +140,23 @@ for (let i = 0; i < N; i++) {
 }
 fs.writeFileSync(path.join(RACINE, 'public', 'notes.wav'), tampon);
 
+// Voix radio : coupe des graves inutiles, chaleur, présence, de-esser, compression, volume normalisé.
+const VOIX = [
+	'highpass=f=85',
+	'equalizer=f=140:t=q:w=1:g=2',
+	'equalizer=f=320:t=q:w=1.2:g=-3',
+	'equalizer=f=3500:t=q:w=1.5:g=3',
+	'highshelf=f=9000:g=1.5',
+	'deesser=i=0.4',
+	'acompressor=threshold=-24dB:ratio=3.5:attack=5:release=90:makeup=3',
+	'loudnorm=I=-16:TP=-1.5:LRA=7',
+	'aresample=44100',
+	'aformat=channel_layouts=stereo',
+].join(',');
+
 // Mélange : voix au premier plan, notes et bruitages dessous.
 const r = spawnSync('ffmpeg', ['-v', 'error', '-y', '-i', path.join(RACINE, 'voix_off.wav'), '-i', path.join(RACINE, 'public', 'notes.wav'),
-	'-filter_complex', `[0]aformat=channel_layouts=stereo,atrim=0:${DUREE.toFixed(2)}[v];[1]volume=0.42[n];[v][n]amix=inputs=2:normalize=0:duration=longest,alimiter=limit=0.95[m]`,
+	'-filter_complex', `[0]atrim=0:${DUREE.toFixed(2)},${VOIX}[v];[1]volume=0.4[n];[v][n]amix=inputs=2:normalize=0:duration=longest,alimiter=limit=0.95[m]`,
 	'-map', '[m]', '-ar', '44100', '-c:a', 'pcm_s16le', path.join(RACINE, 'public', 'mix.wav')], {stdio: 'inherit'});
 if (r.status !== 0) process.exit(1);
 console.log(`public/notes.wav et public/mix.wav écrits (${DUREE.toFixed(2)} s).`);

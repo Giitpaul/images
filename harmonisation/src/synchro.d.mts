@@ -1,0 +1,11 @@
+export const FPS: number;
+export const GAMME: number[];
+export const NOMS: string[];
+export const ROMAINS: string[];
+export const NATURE: string[];
+export function f(s: number): number;
+export function accord(k: number): number[];
+export function nomDegre(d: number): string;
+export function calculerReperes(a: unknown): Record<string, any>;
+export function notes(R: Record<string, any>): {t: number; midi: number; d: number; v: number}[];
+export function bruitages(R: Record<string, any>): {t: number; type: string}[];

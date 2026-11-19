@@ -205,17 +205,17 @@
   {
    "mot": "Do",
    "debut": 18.53,
-   "fin": 18.72
+   "fin": 18.88
   },
   {
    "mot": "Mi",
-   "debut": 19.41,
-   "fin": 19.65
+   "debut": 19.0,
+   "fin": 19.35
   },
   {
    "mot": "Sol",
    "debut": 19.41,
-   "fin": 19.65
+   "fin": 19.76
   },
   {
    "mot": "Maintenant",
@@ -1040,205 +1040,330 @@
   {
    "mot": "On",
    "debut": 116.01,
-   "fin": 116.17
+   "fin": 116.36
   },
   {
    "mot": "mesure",
-   "debut": 116.27,
-   "fin": 116.84
+   "debut": 116.3,
+   "fin": 116.65
   },
   {
    "mot": "les",
-   "debut": 116.97,
-   "fin": 117.15
+   "debut": 116.6,
+   "fin": 116.95
   },
   {
    "mot": "sept",
-   "debut": 117.28,
-   "fin": 117.46
+   "debut": 116.75,
+   "fin": 117.1
   },
   {
    "mot": "accords",
-   "debut": 118.35,
-   "fin": 119.44
+   "debut": 117.0,
+   "fin": 117.35
   },
   {
    "mot": "de",
-   "debut": 119.57,
-   "fin": 119.75
+   "debut": 117.25,
+   "fin": 117.6
   },
   {
    "mot": "la",
-   "debut": 120.21,
-   "fin": 120.38
+   "debut": 117.35,
+   "fin": 117.7
   },
   {
    "mot": "gamme",
-   "debut": 121.26,
-   "fin": 121.6
+   "debut": 117.45,
+   "fin": 117.8
   },
   {
    "mot": "Do",
+   "debut": 118.4,
+   "fin": 118.75
+  },
+  {
+   "mot": "vers",
+   "debut": 119.13,
+   "fin": 119.48
+  },
+  {
+   "mot": "Mi",
+   "debut": 119.55,
+   "fin": 119.9
+  },
+  {
+   "mot": "deux",
+   "debut": 120.05,
+   "fin": 120.4
+  },
+  {
+   "mot": "tons",
+   "debut": 120.2,
+   "fin": 120.55
+  },
+  {
+   "mot": "Do",
+   "debut": 121.26,
+   "fin": 121.61
+  },
+  {
+   "mot": "majeur",
+   "debut": 121.45,
+   "fin": 121.8
+  },
+  {
+   "mot": "Ré",
    "debut": 122.93,
-   "fin": 123.25
+   "fin": 123.28
   },
   {
    "mot": "vers",
    "debut": 123.65,
-   "fin": 123.86
-  },
-  {
-   "mot": "Mi",
-   "debut": 123.98,
-   "fin": 124.17
-  },
-  {
-   "mot": "deux",
-   "debut": 125.03,
-   "fin": 125.25
-  },
-  {
-   "mot": "tons",
-   "debut": 125.31,
-   "fin": 125.55
-  },
-  {
-   "mot": "Do",
-   "debut": 126.12,
-   "fin": 126.36
-  },
-  {
-   "mot": "majeur",
-   "debut": 126.47,
-   "fin": 128.14
-  },
-  {
-   "mot": "Ré",
-   "debut": 128.73,
-   "fin": 128.92
-  },
-  {
-   "mot": "vers",
-   "debut": 129.01,
-   "fin": 129.25
+   "fin": 124.0
   },
   {
    "mot": "Fa",
-   "debut": 129.85,
-   "fin": 130.08
+   "debut": 123.95,
+   "fin": 124.3
   },
   {
    "mot": "un",
-   "debut": 131.11,
-   "fin": 131.34
+   "debut": 125.03,
+   "fin": 125.38
   },
   {
    "mot": "ton",
-   "debut": 131.37,
-   "fin": 131.55
+   "debut": 125.13,
+   "fin": 125.48
   },
   {
    "mot": "et",
-   "debut": 132.8,
-   "fin": 133.06
+   "debut": 125.3,
+   "fin": 125.65
   },
   {
    "mot": "demi",
-   "debut": 133.44,
-   "fin": 133.9
+   "debut": 125.43,
+   "fin": 125.78
   },
   {
    "mot": "Ré",
-   "debut": 134.37,
-   "fin": 134.71
+   "debut": 126.12,
+   "fin": 126.47
   },
   {
    "mot": "mineur",
-   "debut": 135.3,
-   "fin": 135.79
+   "debut": 126.4,
+   "fin": 126.75
   },
   {
    "mot": "Mi",
+   "debut": 127.89,
+   "fin": 128.24
+  },
+  {
+   "mot": "vers",
+   "debut": 128.73,
+   "fin": 129.08
+  },
+  {
+   "mot": "Sol",
+   "debut": 129.05,
+   "fin": 129.4
+  },
+  {
+   "mot": "un",
+   "debut": 129.85,
+   "fin": 130.2
+  },
+  {
+   "mot": "ton",
+   "debut": 129.96,
+   "fin": 130.31
+  },
+  {
+   "mot": "et",
+   "debut": 130.15,
+   "fin": 130.5
+  },
+  {
+   "mot": "demi",
+   "debut": 130.3,
+   "fin": 130.65
+  },
+  {
+   "mot": "Mi",
+   "debut": 131.11,
+   "fin": 131.46
+  },
+  {
+   "mot": "mineur",
+   "debut": 131.35,
+   "fin": 131.7
+  },
+  {
+   "mot": "Fa",
+   "debut": 132.8,
+   "fin": 133.15
+  },
+  {
+   "mot": "vers",
+   "debut": 133.44,
+   "fin": 133.79
+  },
+  {
+   "mot": "La",
+   "debut": 133.7,
+   "fin": 134.05
+  },
+  {
+   "mot": "deux",
+   "debut": 134.37,
+   "fin": 134.72
+  },
+  {
+   "mot": "tons",
+   "debut": 134.62,
+   "fin": 134.97
+  },
+  {
+   "mot": "Fa",
+   "debut": 135.3,
+   "fin": 135.65
+  },
+  {
+   "mot": "majeur",
+   "debut": 135.55,
+   "fin": 135.9
+  },
+  {
+   "mot": "Sol",
    "debut": 136.74,
-   "fin": 137.05
+   "fin": 137.09
   },
   {
    "mot": "vers",
    "debut": 137.38,
-   "fin": 137.6
+   "fin": 137.73
   },
   {
-   "mot": "Sol",
-   "debut": 137.76,
-   "fin": 137.9
-  },
-  {
-   "mot": "un",
-   "debut": 138.32,
-   "fin": 138.64
-  },
-  {
-   "mot": "ton",
-   "debut": 138.64,
-   "fin": 138.8
-  },
-  {
-   "mot": "et",
-   "debut": 139.26,
-   "fin": 139.52
-  },
-  {
-   "mot": "demi",
-   "debut": 139.48,
-   "fin": 139.85
-  },
-  {
-   "mot": "Mi",
-   "debut": 140.97,
-   "fin": 141.27
-  },
-  {
-   "mot": "mineur",
-   "debut": 141.46,
-   "fin": 141.93
-  },
-  {
-   "mot": "Fa",
-   "debut": 142.39,
-   "fin": 142.61
-  },
-  {
-   "mot": "vers",
-   "debut": 142.73,
-   "fin": 142.88
-  },
-  {
-   "mot": "La",
-   "debut": 143.45,
-   "fin": 143.62
+   "mot": "Si",
+   "debut": 137.7,
+   "fin": 138.05
   },
   {
    "mot": "deux",
-   "debut": 145.12,
-   "fin": 145.33
+   "debut": 138.32,
+   "fin": 138.67
   },
   {
    "mot": "tons",
-   "debut": 145.34,
-   "fin": 145.5
-  },
-  {
-   "mot": "Fa",
-   "debut": 146.61,
-   "fin": 146.88
-  },
-  {
-   "mot": "majeur",
-   "debut": 147.15,
-   "fin": 148.18
+   "debut": 138.6,
+   "fin": 138.95
   },
   {
    "mot": "Sol",
+   "debut": 139.26,
+   "fin": 139.61
+  },
+  {
+   "mot": "majeur",
+   "debut": 139.5,
+   "fin": 139.85
+  },
+  {
+   "mot": "La",
+   "debut": 140.97,
+   "fin": 141.32
+  },
+  {
+   "mot": "vers",
+   "debut": 141.45,
+   "fin": 141.8
+  },
+  {
+   "mot": "Do",
+   "debut": 141.72,
+   "fin": 142.07
+  },
+  {
+   "mot": "un",
+   "debut": 142.39,
+   "fin": 142.74
+  },
+  {
+   "mot": "ton",
+   "debut": 142.65,
+   "fin": 143.0
+  },
+  {
+   "mot": "et",
+   "debut": 142.85,
+   "fin": 143.2
+  },
+  {
+   "mot": "demi",
+   "debut": 142.98,
+   "fin": 143.33
+  },
+  {
+   "mot": "La",
+   "debut": 143.4,
+   "fin": 143.75
+  },
+  {
+   "mot": "mineur",
+   "debut": 143.62,
+   "fin": 143.97
+  },
+  {
+   "mot": "Et",
+   "debut": 145.12,
+   "fin": 145.47
+  },
+  {
+   "mot": "Si",
+   "debut": 145.3,
+   "fin": 145.65
+  },
+  {
+   "mot": "Si",
+   "debut": 146.65,
+   "fin": 147.0
+  },
+  {
+   "mot": "vers",
+   "debut": 147.15,
+   "fin": 147.5
+  },
+  {
+   "mot": "Ré",
+   "debut": 147.5,
+   "fin": 147.85
+  },
+  {
+   "mot": "un",
+   "debut": 147.95,
+   "fin": 148.3
+  },
+  {
+   "mot": "ton",
+   "debut": 148.06,
+   "fin": 148.41
+  },
+  {
+   "mot": "et",
+   "debut": 148.25,
+   "fin": 148.6
+  },
+  {
+   "mot": "demi",
+   "debut": 148.36,
+   "fin": 148.71
+  },
+  {
+   "mot": "Ré",
    "debut": 148.89,
    "fin": 149.23
   },
@@ -1248,433 +1373,308 @@
    "fin": 149.53
   },
   {
-   "mot": "Si",
+   "mot": "Fa",
    "debut": 149.67,
    "fin": 149.82
   },
   {
-   "mot": "deux",
+   "mot": "encore",
    "debut": 150.28,
-   "fin": 150.47
+   "fin": 150.59
   },
   {
-   "mot": "tons",
+   "mot": "un",
    "debut": 150.51,
-   "fin": 150.67
+   "fin": 150.71
   },
   {
-   "mot": "Sol",
-   "debut": 150.6,
-   "fin": 150.81
+   "mot": "ton",
+   "debut": 150.62,
+   "fin": 150.84
   },
   {
-   "mot": "majeur",
+   "mot": "et",
    "debut": 150.76,
+   "fin": 151.05
+  },
+  {
+   "mot": "demi",
+   "debut": 150.93,
    "fin": 151.21
   },
   {
-   "mot": "La",
+   "mot": "Deux",
    "debut": 151.69,
    "fin": 152.04
   },
   {
-   "mot": "vers",
+   "mot": "petites",
    "debut": 152.12,
-   "fin": 152.29
+   "fin": 152.42
   },
   {
-   "mot": "Do",
+   "mot": "tierces",
    "debut": 152.48,
    "fin": 152.67
   },
   {
-   "mot": "un",
+   "mot": "à",
    "debut": 152.75,
    "fin": 152.91
   },
   {
-   "mot": "ton",
+   "mot": "la",
+   "debut": 152.79,
+   "fin": 153.0
+  },
+  {
+   "mot": "suite",
    "debut": 153.02,
    "fin": 153.2
   },
   {
-   "mot": "et",
+   "mot": "C'est",
    "debut": 153.85,
    "fin": 154.05
   },
   {
-   "mot": "demi",
+   "mot": "un",
    "debut": 154.08,
-   "fin": 154.55
+   "fin": 154.28
   },
   {
-   "mot": "La",
+   "mot": "accord",
+   "debut": 154.16,
+   "fin": 154.45
+  },
+  {
+   "mot": "à",
+   "debut": 154.36,
+   "fin": 154.58
+  },
+  {
+   "mot": "part",
+   "debut": 154.56,
+   "fin": 154.72
+  },
+  {
+   "mot": "Si",
    "debut": 155.48,
    "fin": 155.81
   },
   {
-   "mot": "mineur",
+   "mot": "diminué",
    "debut": 155.82,
    "fin": 156.18
   },
   {
-   "mot": "Et",
+   "mot": "À",
    "debut": 159.21,
    "fin": 159.4
   },
   {
-   "mot": "Si",
-   "debut": 159.5,
+   "mot": "retenir",
+   "debut": 159.21,
    "fin": 159.75
   },
   {
-   "mot": "Si",
+   "mot": "Dans",
    "debut": 160.31,
    "fin": 160.57
   },
   {
-   "mot": "vers",
+   "mot": "la",
    "debut": 160.53,
-   "fin": 160.73
+   "fin": 160.75
   },
   {
-   "mot": "Ré",
-   "debut": 160.61,
-   "fin": 160.79
-  },
-  {
-   "mot": "un",
+   "mot": "gamme",
    "debut": 160.74,
-   "fin": 160.91
+   "fin": 160.94
   },
   {
-   "mot": "ton",
-   "debut": 160.79,
-   "fin": 161.01
-  },
-  {
-   "mot": "et",
+   "mot": "de",
    "debut": 160.95,
    "fin": 161.14
   },
   {
-   "mot": "demi",
-   "debut": 161.02,
+   "mot": "Do",
+   "debut": 161.13,
    "fin": 161.34
   },
   {
-   "mot": "Ré",
+   "mot": "majeur",
+   "debut": 161.39,
+   "fin": 161.7
+  },
+  {
+   "mot": "trois",
    "debut": 161.7,
-   "fin": 161.84
+   "fin": 161.89
   },
   {
-   "mot": "vers",
+   "mot": "accords",
    "debut": 161.97,
-   "fin": 162.14
+   "fin": 162.27
   },
   {
-   "mot": "Fa",
-   "debut": 162.13,
-   "fin": 162.37
+   "mot": "majeurs",
+   "debut": 162.27,
+   "fin": 162.65
   },
   {
-   "mot": "encore",
-   "debut": 162.49,
-   "fin": 162.91
-  },
-  {
-   "mot": "un",
+   "mot": "Do",
    "debut": 162.93,
    "fin": 163.26
   },
   {
-   "mot": "ton",
-   "debut": 163.32,
-   "fin": 163.44
-  },
-  {
-   "mot": "et",
-   "debut": 163.59,
-   "fin": 163.71
-  },
-  {
-   "mot": "demi",
-   "debut": 163.86,
+   "mot": "Fa",
+   "debut": 163.98,
    "fin": 164.25
   },
   {
-   "mot": "Deux",
+   "mot": "et",
    "debut": 164.78,
    "fin": 164.93
   },
   {
-   "mot": "petites",
+   "mot": "Sol",
    "debut": 164.94,
+   "fin": 165.1
+  },
+  {
+   "mot": "Trois",
+   "debut": 166.02,
    "fin": 166.16
   },
   {
-   "mot": "tierces",
+   "mot": "accords",
    "debut": 166.15,
-   "fin": 166.33
+   "fin": 166.52
   },
   {
-   "mot": "à",
-   "debut": 166.37,
-   "fin": 166.57
-  },
-  {
-   "mot": "la",
-   "debut": 166.73,
+   "mot": "mineurs",
+   "debut": 166.58,
    "fin": 166.88
   },
   {
-   "mot": "suite",
+   "mot": "Ré",
    "debut": 167.48,
    "fin": 167.81
   },
   {
-   "mot": "C'est",
-   "debut": 168.46,
-   "fin": 168.68
-  },
-  {
-   "mot": "un",
-   "debut": 168.9,
-   "fin": 169.02
-  },
-  {
-   "mot": "accord",
-   "debut": 169.24,
-   "fin": 169.7
-  },
-  {
-   "mot": "à",
-   "debut": 169.92,
-   "fin": 170.04
-  },
-  {
-   "mot": "part",
-   "debut": 170.1,
-   "fin": 170.39
-  },
-  {
-   "mot": "Si",
-   "debut": 170.6,
-   "fin": 170.78
-  },
-  {
-   "mot": "diminué",
-   "debut": 170.86,
-   "fin": 171.76
-  },
-  {
-   "mot": "À",
-   "debut": 173.69,
-   "fin": 173.91
-  },
-  {
-   "mot": "retenir",
-   "debut": 173.69,
-   "fin": 174.21
-  },
-  {
-   "mot": "Dans",
-   "debut": 174.19,
-   "fin": 174.31
-  },
-  {
-   "mot": "la",
-   "debut": 174.29,
-   "fin": 174.41
-  },
-  {
-   "mot": "gamme",
-   "debut": 174.39,
-   "fin": 174.51
-  },
-  {
-   "mot": "de",
-   "debut": 174.56,
-   "fin": 174.71
-  },
-  {
-   "mot": "Do",
-   "debut": 174.59,
-   "fin": 174.71
-  },
-  {
-   "mot": "majeur",
-   "debut": 174.62,
-   "fin": 174.92
-  },
-  {
-   "mot": "trois",
-   "debut": 175.28,
-   "fin": 175.46
-  },
-  {
-   "mot": "accords",
-   "debut": 175.28,
-   "fin": 175.6
-  },
-  {
-   "mot": "majeurs",
-   "debut": 175.56,
-   "fin": 175.75
-  },
-  {
-   "mot": "Do",
-   "debut": 175.66,
-   "fin": 175.83
-  },
-  {
-   "mot": "Fa",
-   "debut": 176.08,
-   "fin": 176.26
-  },
-  {
-   "mot": "et",
-   "debut": 176.08,
-   "fin": 176.3
-  },
-  {
-   "mot": "Sol",
-   "debut": 176.08,
-   "fin": 176.35
-  },
-  {
-   "mot": "Trois",
-   "debut": 176.28,
-   "fin": 176.4
-  },
-  {
-   "mot": "accords",
-   "debut": 176.33,
-   "fin": 176.5
-  },
-  {
-   "mot": "mineurs",
-   "debut": 176.44,
-   "fin": 176.6
-  },
-  {
-   "mot": "Ré",
-   "debut": 176.88,
-   "fin": 177.08
-  },
-  {
    "mot": "Mi",
-   "debut": 176.88,
-   "fin": 177.18
+   "debut": 168.46,
+   "fin": 168.81
   },
   {
    "mot": "et",
-   "debut": 177.16,
-   "fin": 177.28
+   "debut": 169.19,
+   "fin": 169.54
   },
   {
    "mot": "La",
-   "debut": 177.19,
-   "fin": 177.43
+   "debut": 169.3,
+   "fin": 169.65
   },
   {
    "mot": "Et",
-   "debut": 177.31,
-   "fin": 177.48
+   "debut": 170.1,
+   "fin": 170.45
   },
   {
    "mot": "un",
-   "debut": 177.47,
-   "fin": 177.59
+   "debut": 170.22,
+   "fin": 170.57
   },
   {
    "mot": "accord",
-   "debut": 177.57,
-   "fin": 177.79
+   "debut": 170.35,
+   "fin": 170.7
   },
   {
    "mot": "diminué",
-   "debut": 177.7,
-   "fin": 178.1
+   "debut": 170.6,
+   "fin": 170.95
   },
   {
    "mot": "Si",
-   "debut": 178.46,
-   "fin": 178.79
+   "debut": 171.49,
+   "fin": 171.76
   },
   {
    "mot": "Majeur",
-   "debut": 178.46,
-   "fin": 178.79
+   "debut": 173.69,
+   "fin": 174.19
   },
   {
    "mot": "mineur",
-   "debut": 178.46,
-   "fin": 178.79
+   "debut": 174.56,
+   "fin": 174.92
   },
   {
    "mot": "mineur",
-   "debut": 179.44,
-   "fin": 179.77
+   "debut": 175.28,
+   "fin": 175.83
   },
   {
    "mot": "majeur",
-   "debut": 179.77,
-   "fin": 179.97
+   "debut": 176.08,
+   "fin": 176.6
   },
   {
    "mot": "majeur",
-   "debut": 179.94,
-   "fin": 180.16
+   "debut": 176.88,
+   "fin": 177.43
   },
   {
    "mot": "mineur",
-   "debut": 180.07,
-   "fin": 180.36
+   "debut": 177.69,
+   "fin": 178.1
   },
   {
    "mot": "diminué",
-   "debut": 180.24,
-   "fin": 180.65
+   "debut": 178.46,
+   "fin": 178.79
   },
   {
    "mot": "Cette",
-   "debut": 180.63,
-   "fin": 180.75
+   "debut": 179.44,
+   "fin": 179.68
   },
   {
    "mot": "suite",
-   "debut": 180.72,
-   "fin": 180.84
+   "debut": 179.77,
+   "fin": 179.92
   },
   {
    "mot": "marche",
-   "debut": 180.83,
-   "fin": 181.0
+   "debut": 180.02,
+   "fin": 180.22
   },
   {
    "mot": "dans",
-   "debut": 180.88,
-   "fin": 181.04
+   "debut": 180.17,
+   "fin": 180.37
   },
   {
    "mot": "toutes",
-   "debut": 181.02,
-   "fin": 181.14
+   "debut": 180.49,
+   "fin": 180.63
   },
   {
    "mot": "les",
-   "debut": 181.18,
-   "fin": 181.34
+   "debut": 180.71,
+   "fin": 180.83
   },
   {
    "mot": "gammes",
-   "debut": 181.22,
-   "fin": 181.34
+   "debut": 180.83,
+   "fin": 181.06
   },
   {
    "mot": "majeures",
-   "debut": 181.22,
+   "debut": 181.18,
    "fin": 181.53
   }
  ]
