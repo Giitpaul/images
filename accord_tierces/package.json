@@ -1,0 +1,22 @@
+{
+  "name": "accord-tierces",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "studio": "remotion studio",
+    "voix": "node scripts/preparer_audio.mjs",
+    "rendu": "node scripts/rendre.mjs",
+    "verifier": "node scripts/verifier.mjs"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.545",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.545"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.12",
+    "typescript": "5.6.3"
+  }
+}

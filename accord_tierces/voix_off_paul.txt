@@ -1,0 +1,14 @@
+Comment construire un accord ? (pause)
+On part d'une gamme. Ici, la gamme de Do majeur.
+Do, Ré, Mi, Fa, Sol, La, Si. (pause)
+Pour bâtir un accord, on empile des tierces.
+Une tierce, c'est un intervalle de trois notes. On compte la note de départ.
+Do, Ré, Mi. De Do à Mi, il y a une tierce. (pause)
+Première étape. On prend la première note de la gamme. Do.
+C'est la tonique. Elle donne son nom à l'accord. (pause)
+Deuxième étape. On saute une note, et on ajoute la troisième. Mi.
+C'est la tierce. (pause)
+Troisième étape. On saute encore une note, et on ajoute la cinquième. Sol.
+C'est la quinte. (pause longue)
+Do, Mi, Sol. Une tierce posée sur une autre tierce.
+Voilà l'accord de Do majeur.
