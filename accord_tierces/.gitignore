@@ -3,3 +3,4 @@ node_modules/
 out/
 verification/
 modeles_whisper/
+__pycache__/
