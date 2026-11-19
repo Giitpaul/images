@@ -4,608 +4,608 @@
  "mots": [
   {
    "mot": "Comment",
-   "debut": 1.07,
-   "fin": 1.21
+   "debut": 0.27,
+   "fin": 0.43
   },
   {
    "mot": "construire",
-   "debut": 1.33,
-   "fin": 1.59
+   "debut": 0.49,
+   "fin": 0.8
   },
   {
    "mot": "un",
-   "debut": 1.59,
-   "fin": 1.78
+   "debut": 0.87,
+   "fin": 1.1
   },
   {
    "mot": "accord",
-   "debut": 1.81,
-   "fin": 2.17
+   "debut": 0.98,
+   "fin": 1.36
   },
   {
    "mot": "On",
-   "debut": 3.73,
-   "fin": 3.87
+   "debut": 2.71,
+   "fin": 2.88
   },
   {
    "mot": "part",
-   "debut": 3.88,
-   "fin": 4.03
+   "debut": 2.92,
+   "fin": 3.04
   },
   {
    "mot": "d'une",
-   "debut": 4.04,
-   "fin": 4.21
+   "debut": 2.98,
+   "fin": 3.2
   },
   {
    "mot": "gamme",
-   "debut": 4.2,
-   "fin": 4.41
+   "debut": 3.16,
+   "fin": 3.36
   },
   {
    "mot": "Ici",
-   "debut": 4.97,
-   "fin": 5.46
+   "debut": 3.72,
+   "fin": 4.16
   },
   {
    "mot": "la",
-   "debut": 5.58,
-   "fin": 5.79
+   "debut": 4.44,
+   "fin": 4.62
   },
   {
    "mot": "gamme",
-   "debut": 6.02,
-   "fin": 6.2
+   "debut": 4.45,
+   "fin": 4.72
   },
   {
    "mot": "de",
-   "debut": 6.24,
-   "fin": 6.44
+   "debut": 4.75,
+   "fin": 4.93
   },
   {
    "mot": "Do",
-   "debut": 6.65,
-   "fin": 6.77
+   "debut": 4.81,
+   "fin": 4.93
   },
   {
    "mot": "majeur",
-   "debut": 6.98,
-   "fin": 7.43
+   "debut": 4.98,
+   "fin": 5.14
   },
   {
    "mot": "Do",
-   "debut": 7.52,
-   "fin": 7.74
+   "debut": 5.97,
+   "fin": 6.27
   },
   {
    "mot": "Ré",
-   "debut": 7.96,
-   "fin": 8.1
+   "debut": 6.63,
+   "fin": 6.89
   },
   {
    "mot": "Mi",
-   "debut": 8.38,
-   "fin": 8.54
+   "debut": 7.17,
+   "fin": 7.45
   },
   {
    "mot": "Fa",
-   "debut": 8.78,
-   "fin": 9.05
+   "debut": 7.8,
+   "fin": 7.98
   },
   {
    "mot": "Sol",
-   "debut": 9.24,
-   "fin": 9.41
+   "debut": 8.31,
+   "fin": 8.59
   },
   {
    "mot": "La",
-   "debut": 9.65,
-   "fin": 9.84
+   "debut": 8.92,
+   "fin": 9.17
   },
   {
    "mot": "Si",
-   "debut": 10.15,
-   "fin": 10.47
+   "debut": 9.54,
+   "fin": 9.76
   },
   {
    "mot": "Pour",
-   "debut": 12.67,
-   "fin": 12.83
+   "debut": 11.05,
+   "fin": 11.22
   },
   {
    "mot": "bâtir",
-   "debut": 12.97,
-   "fin": 13.51
+   "debut": 11.21,
+   "fin": 11.51
+  },
+  {
+   "mot": "un",
+   "debut": 11.45,
+   "fin": 11.66
+  },
+  {
+   "mot": "accord",
+   "debut": 11.69,
+   "fin": 11.96
+  },
+  {
+   "mot": "on",
+   "debut": 12.3,
+   "fin": 12.55
+  },
+  {
+   "mot": "empile",
+   "debut": 12.56,
+   "fin": 12.82
+  },
+  {
+   "mot": "des",
+   "debut": 12.83,
+   "fin": 12.95
+  },
+  {
+   "mot": "tierces",
+   "debut": 12.99,
+   "fin": 13.16
+  },
+  {
+   "mot": "Une",
+   "debut": 13.04,
+   "fin": 13.22
+  },
+  {
+   "mot": "tierce",
+   "debut": 13.21,
+   "fin": 13.36
+  },
+  {
+   "mot": "c'est",
+   "debut": 14.56,
+   "fin": 14.72
   },
   {
    "mot": "un",
    "debut": 14.8,
-   "fin": 15.02
-  },
-  {
-   "mot": "accord",
-   "debut": 15.18,
-   "fin": 16.03
-  },
-  {
-   "mot": "on",
-   "debut": 16.07,
-   "fin": 16.23
-  },
-  {
-   "mot": "empile",
-   "debut": 16.23,
-   "fin": 17.53
-  },
-  {
-   "mot": "des",
-   "debut": 17.62,
-   "fin": 17.84
-  },
-  {
-   "mot": "tierces",
-   "debut": 17.99,
-   "fin": 18.15
-  },
-  {
-   "mot": "Une",
-   "debut": 18.66,
-   "fin": 18.96
-  },
-  {
-   "mot": "tierce",
-   "debut": 19.37,
-   "fin": 19.54
-  },
-  {
-   "mot": "c'est",
-   "debut": 20.23,
-   "fin": 20.42
-  },
-  {
-   "mot": "un",
-   "debut": 20.39,
-   "fin": 20.56
+   "fin": 14.96
   },
   {
    "mot": "intervalle",
-   "debut": 20.65,
-   "fin": 21.21
+   "debut": 14.97,
+   "fin": 15.41
   },
   {
    "mot": "de",
-   "debut": 21.31,
-   "fin": 21.46
+   "debut": 15.32,
+   "fin": 15.59
   },
   {
    "mot": "trois",
-   "debut": 21.58,
-   "fin": 21.73
+   "debut": 15.57,
+   "fin": 15.76
   },
   {
    "mot": "notes",
-   "debut": 22.0,
-   "fin": 22.16
+   "debut": 15.77,
+   "fin": 15.94
   },
   {
    "mot": "On",
-   "debut": 22.96,
-   "fin": 23.12
+   "debut": 16.59,
+   "fin": 16.8
   },
   {
    "mot": "compte",
-   "debut": 23.19,
-   "fin": 23.37
+   "debut": 16.75,
+   "fin": 16.96
   },
   {
    "mot": "la",
-   "debut": 23.54,
-   "fin": 23.73
+   "debut": 16.97,
+   "fin": 17.09
   },
   {
    "mot": "note",
-   "debut": 23.84,
-   "fin": 24.0
+   "debut": 17.12,
+   "fin": 17.24
   },
   {
    "mot": "de",
-   "debut": 24.08,
-   "fin": 24.26
+   "debut": 17.2,
+   "fin": 17.39
   },
   {
    "mot": "départ",
-   "debut": 24.27,
-   "fin": 24.65
+   "debut": 17.42,
+   "fin": 17.69
   },
   {
    "mot": "Do",
-   "debut": 25.4,
-   "fin": 25.65
+   "debut": 18.57,
+   "fin": 18.83
   },
   {
    "mot": "Ré",
-   "debut": 25.73,
-   "fin": 25.88
+   "debut": 19.14,
+   "fin": 19.35
   },
   {
    "mot": "Mi",
-   "debut": 25.99,
-   "fin": 26.17
+   "debut": 19.6,
+   "fin": 19.82
   },
   {
    "mot": "De",
-   "debut": 26.67,
-   "fin": 26.91
+   "debut": 20.29,
+   "fin": 20.45
   },
   {
    "mot": "Do",
-   "debut": 26.93,
-   "fin": 27.09
+   "debut": 20.42,
+   "fin": 20.67
   },
   {
    "mot": "à",
-   "debut": 27.09,
-   "fin": 27.21
+   "debut": 20.77,
+   "fin": 20.89
   },
   {
    "mot": "Mi",
-   "debut": 27.23,
-   "fin": 27.37
+   "debut": 20.95,
+   "fin": 21.12
   },
   {
    "mot": "il",
-   "debut": 28.33,
-   "fin": 28.49
+   "debut": 21.75,
+   "fin": 22.03
   },
   {
    "mot": "y",
-   "debut": 28.41,
-   "fin": 28.68
+   "debut": 22.01,
+   "fin": 22.22
   },
   {
    "mot": "a",
-   "debut": 28.68,
-   "fin": 28.85
+   "debut": 22.1,
+   "fin": 22.23
   },
   {
    "mot": "une",
-   "debut": 28.73,
-   "fin": 28.95
+   "debut": 22.23,
+   "fin": 22.43
   },
   {
    "mot": "tierce",
-   "debut": 28.9,
-   "fin": 29.11
+   "debut": 22.31,
+   "fin": 22.43
   },
   {
    "mot": "Première",
-   "debut": 31.27,
-   "fin": 31.68
+   "debut": 24.14,
+   "fin": 24.4
   },
   {
    "mot": "étape",
-   "debut": 31.66,
-   "fin": 32.12
+   "debut": 24.46,
+   "fin": 24.63
   },
   {
    "mot": "On",
-   "debut": 32.5,
-   "fin": 32.64
+   "debut": 24.87,
+   "fin": 25.06
   },
   {
    "mot": "prend",
-   "debut": 32.76,
-   "fin": 32.9
+   "debut": 25.14,
+   "fin": 25.29
   },
   {
    "mot": "la",
-   "debut": 33.99,
-   "fin": 34.19
+   "debut": 25.17,
+   "fin": 25.4
   },
   {
    "mot": "première",
-   "debut": 34.26,
-   "fin": 34.64
+   "debut": 25.31,
+   "fin": 25.74
   },
   {
    "mot": "note",
-   "debut": 34.66,
-   "fin": 34.83
+   "debut": 25.75,
+   "fin": 25.93
   },
   {
    "mot": "de",
-   "debut": 35.06,
-   "fin": 35.21
+   "debut": 25.98,
+   "fin": 26.19
   },
   {
    "mot": "la",
-   "debut": 35.19,
-   "fin": 35.35
+   "debut": 26.07,
+   "fin": 26.25
   },
   {
    "mot": "gamme",
-   "debut": 35.33,
-   "fin": 35.5
+   "debut": 26.3,
+   "fin": 26.42
   },
   {
    "mot": "Do",
-   "debut": 36.15,
-   "fin": 36.35
+   "debut": 26.44,
+   "fin": 26.59
   },
   {
    "mot": "C'est",
-   "debut": 36.44,
-   "fin": 36.69
+   "debut": 27.5,
+   "fin": 27.72
   },
   {
    "mot": "la",
-   "debut": 36.66,
-   "fin": 36.86
+   "debut": 27.5,
+   "fin": 27.76
   },
   {
    "mot": "tonique",
-   "debut": 36.91,
-   "fin": 37.21
+   "debut": 27.7,
+   "fin": 27.86
   },
   {
    "mot": "Elle",
-   "debut": 37.7,
-   "fin": 37.86
+   "debut": 28.27,
+   "fin": 28.42
   },
   {
    "mot": "donne",
-   "debut": 37.89,
-   "fin": 38.05
+   "debut": 28.47,
+   "fin": 28.63
   },
   {
    "mot": "son",
-   "debut": 38.16,
-   "fin": 38.32
+   "debut": 28.63,
+   "fin": 28.83
   },
   {
    "mot": "nom",
-   "debut": 38.37,
-   "fin": 38.52
+   "debut": 28.82,
+   "fin": 29.08
   },
   {
    "mot": "à",
-   "debut": 38.4,
-   "fin": 38.61
+   "debut": 29.12,
+   "fin": 29.24
   },
   {
    "mot": "l'accord",
-   "debut": 38.56,
-   "fin": 38.99
+   "debut": 29.35,
+   "fin": 29.66
   },
   {
    "mot": "Deuxième",
-   "debut": 41.69,
-   "fin": 42.11
+   "debut": 31.48,
+   "fin": 31.83
   },
   {
    "mot": "étape",
-   "debut": 42.21,
-   "fin": 42.63
+   "debut": 31.77,
+   "fin": 32.07
   },
   {
    "mot": "On",
-   "debut": 43.19,
-   "fin": 43.36
+   "debut": 32.33,
+   "fin": 32.59
   },
   {
    "mot": "saute",
-   "debut": 43.42,
-   "fin": 43.61
+   "debut": 32.54,
+   "fin": 32.76
   },
   {
    "mot": "une",
-   "debut": 43.78,
-   "fin": 43.94
+   "debut": 32.64,
+   "fin": 32.8
   },
   {
    "mot": "note",
-   "debut": 44.04,
-   "fin": 44.18
+   "debut": 32.74,
+   "fin": 32.91
   },
   {
    "mot": "et",
-   "debut": 45.03,
-   "fin": 45.2
+   "debut": 33.45,
+   "fin": 33.67
   },
   {
    "mot": "on",
-   "debut": 45.19,
-   "fin": 45.41
+   "debut": 33.46,
+   "fin": 33.77
   },
   {
    "mot": "ajoute",
-   "debut": 45.65,
-   "fin": 46.02
+   "debut": 33.76,
+   "fin": 33.99
   },
   {
    "mot": "la",
-   "debut": 46.04,
-   "fin": 46.2
+   "debut": 33.9,
+   "fin": 34.09
   },
   {
    "mot": "troisième",
-   "debut": 46.17,
-   "fin": 46.55
+   "debut": 34.01,
+   "fin": 34.31
   },
   {
    "mot": "Mi",
-   "debut": 46.84,
-   "fin": 46.99
+   "debut": 35.17,
+   "fin": 35.36
   },
   {
    "mot": "C'est",
-   "debut": 47.7,
-   "fin": 47.92
+   "debut": 36.36,
+   "fin": 36.59
   },
   {
    "mot": "la",
-   "debut": 47.98,
-   "fin": 48.16
+   "debut": 36.36,
+   "fin": 36.66
   },
   {
    "mot": "tierce",
-   "debut": 48.27,
-   "fin": 48.49
+   "debut": 36.57,
+   "fin": 36.74
   },
   {
    "mot": "Troisième",
-   "debut": 50.17,
-   "fin": 50.58
+   "debut": 38.12,
+   "fin": 38.4
   },
   {
    "mot": "étape",
-   "debut": 50.74,
-   "fin": 51.07
+   "debut": 38.37,
+   "fin": 38.54
   },
   {
    "mot": "On",
-   "debut": 51.17,
-   "fin": 51.34
+   "debut": 38.84,
+   "fin": 39.06
   },
   {
    "mot": "saute",
-   "debut": 51.49,
-   "fin": 51.64
+   "debut": 39.06,
+   "fin": 39.22
   },
   {
    "mot": "encore",
-   "debut": 51.68,
-   "fin": 52.02
+   "debut": 39.32,
+   "fin": 39.55
   },
   {
    "mot": "une",
-   "debut": 52.04,
-   "fin": 52.21
+   "debut": 39.51,
+   "fin": 39.72
   },
   {
    "mot": "note",
-   "debut": 52.2,
-   "fin": 52.38
+   "debut": 39.75,
+   "fin": 39.97
   },
   {
    "mot": "et",
-   "debut": 52.47,
-   "fin": 52.66
+   "debut": 39.85,
+   "fin": 40.05
   },
   {
    "mot": "on",
-   "debut": 52.74,
-   "fin": 52.87
+   "debut": 39.96,
+   "fin": 40.22
   },
   {
    "mot": "ajoute",
-   "debut": 53.57,
-   "fin": 53.94
+   "debut": 40.13,
+   "fin": 40.55
   },
   {
    "mot": "la",
-   "debut": 54.23,
-   "fin": 54.37
+   "debut": 40.57,
+   "fin": 40.74
   },
   {
    "mot": "cinquième",
-   "debut": 54.55,
-   "fin": 55.1
+   "debut": 40.69,
+   "fin": 41.05
   },
   {
    "mot": "Sol",
-   "debut": 55.6,
-   "fin": 55.85
+   "debut": 41.81,
+   "fin": 42.03
   },
   {
    "mot": "C'est",
-   "debut": 56.47,
-   "fin": 56.69
+   "debut": 42.89,
+   "fin": 43.15
   },
   {
    "mot": "la",
-   "debut": 56.71,
-   "fin": 56.91
+   "debut": 42.89,
+   "fin": 43.23
   },
   {
    "mot": "quinte",
-   "debut": 56.98,
-   "fin": 57.11
+   "debut": 43.14,
+   "fin": 43.31
   },
   {
    "mot": "Do",
-   "debut": 61.97,
-   "fin": 62.14
+   "debut": 46.64,
+   "fin": 46.89
   },
   {
    "mot": "Mi",
-   "debut": 62.64,
-   "fin": 62.88
+   "debut": 47.32,
+   "fin": 47.55
   },
   {
    "mot": "Sol",
-   "debut": 63.21,
-   "fin": 63.52
+   "debut": 47.85,
+   "fin": 48.15
   },
   {
    "mot": "Une",
-   "debut": 64.5,
-   "fin": 64.64
+   "debut": 48.85,
+   "fin": 49.01
   },
   {
    "mot": "tierce",
-   "debut": 64.82,
-   "fin": 64.99
+   "debut": 49.08,
+   "fin": 49.25
   },
   {
    "mot": "posée",
-   "debut": 65.09,
-   "fin": 65.49
+   "debut": 49.33,
+   "fin": 49.68
   },
   {
    "mot": "sur",
-   "debut": 65.66,
-   "fin": 65.78
+   "debut": 49.78,
+   "fin": 49.9
   },
   {
    "mot": "une",
-   "debut": 65.89,
-   "fin": 66.16
+   "debut": 49.8,
+   "fin": 50.12
   },
   {
    "mot": "autre",
-   "debut": 66.28,
-   "fin": 66.45
+   "debut": 50.11,
+   "fin": 50.35
   },
   {
    "mot": "tierce",
-   "debut": 66.47,
-   "fin": 66.64
+   "debut": 50.33,
+   "fin": 50.57
   },
   {
    "mot": "Voilà",
-   "debut": 67.64,
-   "fin": 68.07
+   "debut": 50.67,
+   "fin": 51.02
   },
   {
    "mot": "l'accord",
-   "debut": 68.06,
-   "fin": 68.37
+   "debut": 51.12,
+   "fin": 51.46
   },
   {
    "mot": "de",
-   "debut": 68.28,
-   "fin": 68.52
+   "debut": 51.34,
+   "fin": 51.69
   },
   {
    "mot": "Do",
-   "debut": 68.49,
-   "fin": 68.67
+   "debut": 51.73,
+   "fin": 51.92
   },
   {
    "mot": "majeur",
-   "debut": 68.7,
-   "fin": 68.97
+   "debut": 51.94,
+   "fin": 52.36
   }
  ]
 }
