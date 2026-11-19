@@ -1,11 +1,14 @@
-// Synthétise la bande son (notes de piano doux + bruitages) depuis src/timeline.mjs.
-// Écrit public/audio.wav (44,1 kHz, stéréo, 16 bits).
+// Synthétise les notes de piano doux et les bruitages, calés sur la voix (public/alignement.json),
+// puis mélange avec la voix off. Écrit public/notes.wav puis public/mix.wav.
 import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {DUREE, notes, bruitages} from '../src/timeline.mjs';
+import {spawnSync} from 'node:child_process';
+import {calculerReperes, notes, bruitages} from '../src/synchro.mjs';
 
 const RACINE = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const R = calculerReperes(JSON.parse(fs.readFileSync(path.join(RACINE, 'public', 'alignement.json'), 'utf8')));
+const DUREE = R.duree;
 const SR = 44100;
 const N = Math.ceil(DUREE * SR);
 const G = new Float32Array(N);
@@ -80,8 +83,19 @@ const eclat = (t) => {
 	});
 };
 
-for (const n of notes()) piano(n.t, n.midi, n.d, n.v);
-for (const b of bruitages()) ({pop, whoosh, eclat})[b.type](b.t);
+const alerte = (t) => {
+	const i0 = Math.round(t * SR);
+	[[880, 0], [660, 0.16]].forEach(([fq, d]) => {
+		const j0 = Math.round(d * SR);
+		for (let j = 0; j < 0.14 * SR; j++) {
+			const s = j / SR;
+			ajoute(i0 + j0 + j, Math.sign(Math.sin(2 * Math.PI * fq * s)) * Math.exp(-s * 18) * 0.035);
+		}
+	});
+};
+
+for (const n of notes(R)) piano(n.t, n.midi, n.d, n.v);
+for (const b of bruitages(R)) ({pop, whoosh, eclat, alerte})[b.type](b.t);
 
 // Petite réverbération (échos décroissants, décalés à gauche et à droite)
 const echos = [
@@ -124,5 +138,11 @@ for (let i = 0; i < N; i++) {
 	tampon.writeInt16LE(Math.round(Math.max(-1, Math.min(1, G2[i] * gain * env)) * 32767), 44 + i * 4);
 	tampon.writeInt16LE(Math.round(Math.max(-1, Math.min(1, D2[i] * gain * env)) * 32767), 46 + i * 4);
 }
-fs.writeFileSync(path.join(RACINE, 'public', 'audio.wav'), tampon);
-console.log(`public/audio.wav écrit (${DUREE} s).`);
+fs.writeFileSync(path.join(RACINE, 'public', 'notes.wav'), tampon);
+
+// Mélange : voix au premier plan, notes et bruitages dessous.
+const r = spawnSync('ffmpeg', ['-v', 'error', '-y', '-i', path.join(RACINE, 'voix_off.wav'), '-i', path.join(RACINE, 'public', 'notes.wav'),
+	'-filter_complex', `[0]aformat=channel_layouts=stereo,atrim=0:${DUREE.toFixed(2)}[v];[1]volume=0.42[n];[v][n]amix=inputs=2:normalize=0:duration=longest,alimiter=limit=0.95[m]`,
+	'-map', '[m]', '-ar', '44100', '-c:a', 'pcm_s16le', path.join(RACINE, 'public', 'mix.wav')], {stdio: 'inherit'});
+if (r.status !== 0) process.exit(1);
+console.log(`public/notes.wav et public/mix.wav écrits (${DUREE.toFixed(2)} s).`);

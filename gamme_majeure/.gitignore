@@ -1,3 +1,5 @@
 node_modules/
 verification/
 public/audio.wav
+public/notes.wav
+public/mix.wav

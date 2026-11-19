@@ -1,0 +1,10 @@
+export const FPS: number;
+export const FORMULE: number[];
+export function f(s: number): number;
+export function gamme(depart: number): number[];
+export function estNoire(m: number): boolean;
+export function nom(m: number, bemol?: boolean): string;
+export function calculerReperes(a: unknown): Record<string, any>;
+export function fenetres(R: Record<string, any>): any[];
+export function notes(R: Record<string, any>): {t: number; midi: number; d: number; v: number}[];
+export function bruitages(R: Record<string, any>): {t: number; type: string}[];

@@ -1,0 +1,85 @@
+{
+ "explication": "Temps relevés sur les pics syllabiques mesurés (bande des voyelles), là où l'aligneur automatique hésite. debut = attaque mesurée.",
+ "corrections": [
+  {
+   "apres": 110.5,
+   "mots": [
+    "Fa",
+    "Sol",
+    "La"
+   ],
+   "debuts": [
+    111.08,
+    112.25,
+    113.15
+   ]
+  },
+  {
+   "apres": 112.5,
+   "mots": [
+    "et",
+    "là",
+    "il",
+    "faut",
+    "un",
+    "demi",
+    "ton"
+   ],
+   "debuts": [
+    114.1,
+    114.25,
+    114.45,
+    114.6,
+    114.72,
+    114.84,
+    115.0
+   ]
+  },
+  {
+   "apres": 119.5,
+   "mots": [
+    "Si",
+    "bémol",
+    "Fa",
+    "Sol",
+    "La",
+    "Si",
+    "bémol",
+    "Do",
+    "Ré",
+    "Mi",
+    "Fa"
+   ],
+   "debuts": [
+    119.9,
+    120.3,
+    121.3,
+    122.17,
+    123.14,
+    124.0,
+    124.38,
+    125.16,
+    126.0,
+    126.91,
+    127.71
+   ]
+  },
+  {
+   "apres": 150.0,
+   "mots": [
+    "Do",
+    "Mi",
+    "Sol",
+    "Voilà",
+    "l'accord"
+   ],
+   "debuts": [
+    150.49,
+    151.24,
+    151.99,
+    152.5,
+    152.75
+   ]
+  }
+ ]
+}
