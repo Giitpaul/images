@@ -261,3 +261,52 @@ export const MiniatureVerticale: React.FC = () => {
 		</AbsoluteFill>
 	);
 };
+
+// Miniature 1280×720 sur le fond fal.ai (scène, projecteurs, harmonica Brodur à droite).
+export const MiniatureFal: React.FC = () => (
+	<AbsoluteFill style={{background: C.fond, overflow: 'hidden'}}>
+		<Polices />
+		<Img src={staticFile('fond_miniature_fal.jpg')} style={{position: 'absolute', inset: 0, width: 1280, height: 720, objectFit: 'cover'}} />
+		<AbsoluteFill style={{background: 'linear-gradient(90deg, rgba(5,8,18,0.82) 0%, rgba(5,8,18,0.5) 42%, rgba(5,8,18,0) 62%)'}} />
+
+		<div style={{position: 'absolute', left: 60, top: 92, whiteSpace: 'nowrap'}}>
+			<div
+				style={{
+					display: 'inline-block',
+					padding: '8px 22px',
+					borderRadius: 999,
+					background: C.tonique,
+					color: C.fond,
+					fontFamily: 'Inter',
+					fontWeight: 800,
+					fontSize: 30,
+					letterSpacing: 1,
+				}}
+			>
+				EN 1 MINUTE
+			</div>
+			<div style={{marginTop: 16, fontFamily: 'Anton', fontSize: 136, lineHeight: 1.02, color: C.texte, textShadow: '0 6px 0 rgba(0,0,0,0.5), 0 0 40px rgba(0,0,0,0.7)'}}>
+				LE SECRET
+			</div>
+			<div style={{fontFamily: 'Anton', fontSize: 136, lineHeight: 1.02, color: C.or, textShadow: `0 6px 0 rgba(0,0,0,0.5), 0 0 50px ${C.or}55`}}>
+				DES ACCORDS
+			</div>
+			<div style={{marginTop: 14, fontFamily: 'Anton', fontSize: 66, letterSpacing: 1, textShadow: '0 4px 0 rgba(0,0,0,0.5)'}}>
+				<span style={{color: C.tonique}}>DO</span>
+				<span style={{color: C.texte}}> + </span>
+				<span style={{color: C.tierce}}>MI</span>
+				<span style={{color: C.texte}}> + </span>
+				<span style={{color: C.quinte}}>SOL</span>
+			</div>
+		</div>
+
+		<Img
+			src={staticFile('logo-apprendre.png')}
+			style={{position: 'absolute', right: 22, top: 18, width: 160, filter: 'drop-shadow(0 0 30px rgba(0,0,0,0.6))'}}
+		/>
+		<div style={{position: 'absolute', left: 60, bottom: 30, display: 'flex', alignItems: 'center', gap: 30}}>
+			<Img src={staticFile('logo-brodur.png')} style={{width: 220}} />
+			<Img src={staticFile('logo-ht.png')} style={{height: 92}} />
+		</div>
+	</AbsoluteFill>
+);
