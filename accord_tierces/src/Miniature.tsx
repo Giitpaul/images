@@ -163,3 +163,101 @@ export const Miniature: React.FC = () => {
 		</AbsoluteFill>
 	);
 };
+
+// Miniature verticale 1080×1920 (Shorts), même décor néon.
+const PV = 210; // diamètre des pastilles
+const PV_X = 470;
+const PV_Y = [1430, 1195, 960]; // Do, Mi, Sol
+
+export const MiniatureVerticale: React.FC = () => {
+	const ACC = PV_X + PV / 2 + 34;
+	const pastille = (y: number, nom: string, couleur: string) => (
+		<div
+			key={nom}
+			style={{
+				position: 'absolute',
+				left: PV_X - PV / 2,
+				top: y - PV / 2,
+				width: PV,
+				height: PV,
+				borderRadius: '50%',
+				background: couleur,
+				boxShadow: `0 0 70px ${couleur}aa, 0 0 0 8px ${C.fond}, 0 0 0 13px ${couleur}66`,
+				display: 'flex',
+				alignItems: 'center',
+				justifyContent: 'center',
+				fontFamily: 'Anton',
+				fontSize: 104,
+				color: C.fond,
+			}}
+		>
+			{nom}
+		</div>
+	);
+	return (
+		<AbsoluteFill style={{background: C.fond, overflow: 'hidden'}}>
+			<Polices />
+			<Orbe x={540} y={1200} r={620} couleur="#3b2a8f" opacite={0.75} />
+			<Orbe x={950} y={950} r={380} couleur={C.quinte} opacite={0.26} />
+			<Orbe x={250} y={1550} r={420} couleur={C.tonique} opacite={0.3} />
+			<Orbe x={160} y={260} r={460} couleur="#c2245b" opacite={0.22} />
+			<AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 50%, transparent 45%, rgba(0,0,0,0.55) 100%)'}} />
+
+			<Img
+				src={staticFile('logo-apprendre.png')}
+				style={{position: 'absolute', left: 540 - 140, top: 70, width: 280, filter: 'drop-shadow(0 0 40px rgba(255,93,108,0.45))'}}
+			/>
+			<div style={{position: 'absolute', left: 0, right: 0, top: 400, textAlign: 'center'}}>
+				<div
+					style={{
+						display: 'inline-block',
+						padding: '10px 30px',
+						borderRadius: 999,
+						background: C.tonique,
+						color: C.fond,
+						fontFamily: 'Inter',
+						fontWeight: 800,
+						fontSize: 42,
+					}}
+				>
+					EN 1 MINUTE
+				</div>
+				<div style={{marginTop: 20, fontFamily: 'Anton', fontSize: 150, lineHeight: 1.02, color: C.texte, textShadow: '0 7px 0 rgba(0,0,0,0.45)'}}>
+					LE SECRET
+				</div>
+				<div style={{fontFamily: 'Anton', fontSize: 150, lineHeight: 1.02, color: C.or, textShadow: `0 7px 0 rgba(0,0,0,0.45), 0 0 50px ${C.or}55`}}>
+					DES ACCORDS
+				</div>
+			</div>
+
+			<svg width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
+				<path d={accolade(ACC, PV_Y[1] + 6, PV_Y[0] - 6, 54)} fill="none" stroke={C.texte} strokeWidth={8} strokeLinecap="round" strokeLinejoin="round" />
+				<path d={accolade(ACC, PV_Y[2] + 6, PV_Y[1] - 6, 54)} fill="none" stroke={C.texte} strokeWidth={8} strokeLinecap="round" strokeLinejoin="round" />
+			</svg>
+			{[0, 1].map((k) => (
+				<div
+					key={k}
+					style={{
+						position: 'absolute',
+						left: ACC + 76,
+						top: (PV_Y[k] + PV_Y[k + 1]) / 2,
+						transform: 'translateY(-50%)',
+						fontFamily: 'Anton',
+						fontSize: 64,
+						color: C.texte,
+					}}
+				>
+					TIERCE
+				</div>
+			))}
+			{pastille(PV_Y[0], 'Do', C.tonique)}
+			{pastille(PV_Y[1], 'Mi', C.tierce)}
+			{pastille(PV_Y[2], 'Sol', C.quinte)}
+
+			<div style={{position: 'absolute', left: 0, right: 0, top: 1640, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 50}}>
+				<Img src={staticFile('logo-brodur.png')} style={{width: 330}} />
+				<Img src={staticFile('logo-ht.png')} style={{height: 140}} />
+			</div>
+		</AbsoluteFill>
+	);
+};
