@@ -3,3 +3,4 @@ verification/
 public/audio.wav
 public/notes.wav
 public/mix.wav
+__pycache__/
