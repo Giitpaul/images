@@ -1,3 +1,5 @@
 {
-  "AUDIO_MODE": "B"
+  "AUDIO_MODE": "B",
+  "METHODE_B": "signal",
+  "VOIX_RADIO": true
 }

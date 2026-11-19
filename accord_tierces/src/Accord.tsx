@@ -196,7 +196,7 @@ export const Accord: React.FC<AccordProps> = ({reperes: r, audio}) => {
 	const anneauX =
 		compteurIndex < 0
 			? xNote(0)
-			: r.compteur.reduce((x, t, k) => (k === 0 ? xNote(0) : x + (xNote(k) - xNote(k - 1)) * souple(frame, t)), xNote(0));
+			: r.compteur.reduce((x, t, k) => (k === 0 ? xNote(0) : x + (xNote(k) - xNote(k - 1)) * doux(frame, t, 0.22)), xNote(0));
 	const compteurOpacite = doux(frame, r.compteur[0], 0.3) * (1 - doux(frame, r.arc, 0.4));
 	const chiffrePop = compteurIndex >= 0 ? doux(frame, r.compteur[compteurIndex], 0.3) : 0;
 
