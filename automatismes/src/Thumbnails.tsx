@@ -1,6 +1,14 @@
 import React from "react";
 import { Img, staticFile } from "remotion";
-import { loadFont } from "@remotion/google-fonts/Anton";
+import { continueRender, delayRender } from "remotion";
+// Police Anton locale (le réseau peut bloquer Google Fonts)
+const attenteAnton = typeof window !== "undefined" ? delayRender("police Anton") : null;
+if (typeof window !== "undefined") {
+  new FontFace("Anton", `url(${staticFile("Anton.woff2")})`).load().then((f) => {
+    document.fonts.add(f);
+    if (attenteAnton !== null) continueRender(attenteAnton);
+  });
+}
 import { NOTES, TITLE } from "./data";
 import { INTRO_SUBTITLE } from "./config";
 import { BG169, BG916 } from "./thumbBg";
@@ -9,7 +17,7 @@ import { BG169, BG916 } from "./thumbBg";
 // vidéo longue, 9:16 1080×1920 pour le short. Peu de mots, très gros, fort
 // contraste : titre, « TABLATURE + BACKING TRACK », les premières cases de la
 // tablature en grand (le début de la phrase), la mascotte.
-const { fontFamily: ANTON } = loadFont();
+const ANTON = "Anton";
 const FONT = "Carlito";
 const C = {
   bg: "#0A0D16",
