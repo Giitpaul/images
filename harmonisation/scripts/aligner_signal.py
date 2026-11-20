@@ -52,8 +52,17 @@ def blocs_parole(x, sr):
     h = int(sr * PAS)
     n = len(x) // h
     db = 20 * np.log10(np.sqrt((x[: n * h].reshape(n, h) ** 2).mean(1)) + 1e-9)
-    # seuil : au dessus du bruit de fond, et au plus 30 dB sous la voix (silences numériques des noise gates)
-    parole = db > max(np.percentile(db, 10) + 15, np.percentile(db, 90) - 30)
+    # seuil : au dessus du bruit de fond LOCAL (il peut changer pendant l'enregistrement),
+    # et au plus 32 dB sous la voix (silences numériques des noise gates)
+    pas = 100  # fenêtres d'une seconde
+    centres, fonds = [], []
+    for c in range(0, n, pas):
+        fen = db[max(0, c - 500): c + 500]
+        centres.append(c)
+        fonds.append(np.percentile(fen, 10))
+    fond_local = np.interp(np.arange(n), centres, fonds)
+    seuil = np.maximum(fond_local + 12, np.percentile(db, 90) - 32)
+    parole = db > seuil
     blocs, i = [], 0
     while i < n:
         if parole[i]:
@@ -148,11 +157,11 @@ def caler_groupes(groupes, blocs):
                 if c < cout[i, j + 1]:
                     cout[i, j + 1], prec[(i, j + 1)] = c, (i, j, "saut")
             # a groupes de mots sur b blocs.
-            for a in range(1, 9):
+            for a in range(1, 17):
                 if i + a > G:
                     break
                 s = sum(nsyl[i: i + a])
-                for b in range(1, 5):
+                for b in range(1, 7):
                     if j + b > B:
                         break
                     p = sum(npic[j: j + b])

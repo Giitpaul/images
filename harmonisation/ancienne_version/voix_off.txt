@@ -1,0 +1,29 @@
+Avec seulement sept notes, on peut fabriquer sept accords. Et ils s'entendent tous très bien entre eux. (pause)
+Petit rappel : un accord, c'est des tierces empilées. Tu prends une note, tu sautes la suivante, tu prends celle d'après. Et tu recommences.
+Do, Mi, Sol. (pause)
+Maintenant, on fait pareil en partant de chaque note de la gamme. Ça s'appelle harmoniser la gamme. (pause)
+Sur Do : Do, Mi, Sol.
+Sur Ré : Ré, Fa, La.
+Sur Mi : Mi, Sol, Si.
+Sur Fa : Fa, La, Do.
+Sur Sol : Sol, Si, Ré.
+Sur La : La, Do, Mi.
+Sur Si : Si, Ré, Fa. (pause)
+Ces sept accords forment une famille : la tonalité de Do majeur. Tu peux les enchaîner dans presque n'importe quel ordre, ça sonne bien. (pause)
+Mais ils n'ont pas tous la même couleur. Certains sonnent joyeux, d'autres plus tristes. (pause)
+Tout se joue entre la première et la deuxième note de l'accord.
+Accord majeur : deux tons d'écart. De Do à Mi, deux tons. Ça sonne gai, lumineux. (pause)
+Accord mineur : un ton et demi d'écart. De La à Do, un ton et demi. Ça sonne mélancolique, plus sombre. (pause)
+Écoute. Do majeur : Do, Mi, Sol. (pause)
+Maintenant, je baisse le Mi d'un demi ton. Il devient Mi bémol.
+Do mineur : Do, Mi bémol, Sol. Tu entends la différence ? (pause)
+On mesure les sept accords de la gamme.
+Do vers Mi : deux tons. Do majeur.
+Ré vers Fa : un ton et demi. Ré mineur.
+Mi vers Sol : un ton et demi. Mi mineur.
+Fa vers La : deux tons. Fa majeur.
+Sol vers Si : deux tons. Sol majeur.
+La vers Do : un ton et demi. La mineur.
+Et Si ? Si vers Ré : un ton et demi. Ré vers Fa : encore un ton et demi. Deux petites tierces à la suite. C'est un accord à part : Si diminué. (pause)
+À retenir. Dans la gamme de Do majeur : trois accords majeurs, Do, Fa et Sol. Trois accords mineurs, Ré, Mi et La. Et un accord diminué, Si. (pause)
+Majeur, mineur, mineur, majeur, majeur, mineur, diminué. Cette suite marche dans toutes les gammes majeures.

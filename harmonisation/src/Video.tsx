@@ -1,6 +1,6 @@
 import React from 'react';
 import {AbsoluteFill, Audio, spring, staticFile, useCurrentFrame} from 'remotion';
-import {FPS, NATURE, NOMS, ROMAINS, nomDegre} from './synchro.mjs';
+import {FPS, NATURE, NOMS, ROMAINS, nomDegre, nomRe} from './synchro.mjs';
 
 export type Props = {R: Record<string, any> | null};
 
@@ -278,6 +278,42 @@ const TY = [800, 700, 600]; // fondamentale, tierce, quinte
 const RANGEE11 = (i: number) => 960 + (i - 5) * 150;
 const RANGEE7 = (i: number) => 960 + (i - 3) * 170;
 
+// La suite majeur / mineur / diminué, une pastille au dessus de chaque tour
+const LIBELLES = ['MAJEUR', 'mineur', 'mineur', 'MAJEUR', 'MAJEUR', 'mineur', 'diminué'];
+const SuiteChips: React.FC<{t: number; temps: number[]; y: number; o: number}> = ({t, temps, y, o}) => {
+	if (o <= 0.001) return null;
+	return (
+		<div style={{position: 'absolute', inset: 0, opacity: o}}>
+			{LIBELLES.map((l, k) => {
+				if (t < temps[k]) return null;
+				const c = COUL_NATURE(k);
+				const actif = pulse(t, temps[k], 0.6);
+				return (
+					<div
+						key={k}
+						style={{
+							position: 'absolute',
+							left: TX(k),
+							top: y,
+							transform: `translate(-50%, -50%) scale(${rebond(t, temps[k]) * (1 + 0.15 * actif)})`,
+							padding: '6px 18px',
+							borderRadius: 999,
+							background: c,
+							boxShadow: `0 0 ${20 + 30 * actif}px ${c}`,
+							fontFamily: ANTON,
+							fontSize: 40,
+							color: C.fond,
+							whiteSpace: 'nowrap',
+						}}
+					>
+						{l}
+					</div>
+				);
+			})}
+		</div>
+	);
+};
+
 // ---------- Vidéo ----------
 export const Video: React.FC<Props> = ({R}) => {
 	const frame = useCurrentFrame();
@@ -291,13 +327,13 @@ export const Video: React.FC<Props> = ({R}) => {
 	const vA = 1 - doux(t, R.rappel - 0.4, 0.4);
 	const vB = fenetre(t, R.rappel, debutD, 0.4);
 	const vD = fenetre(t, debutD, R.toutSeJoue, 0.4);
-	const vF = fenetre(t, R.toutSeJoue, R.mesure, 0.45);
-	const vG = doux(t, R.mesure, 0.5);
+	const vF = fenetre(t, R.toutSeJoue, R.attention, 0.45);
+	const vG = fenetre(t, R.mesure, R.exempleRe, 0.5);
 	const vFin = 1 - doux(t, R.duree - 0.8, 0.7);
 
 	// Ambiance
 	const chaud = fenetre(t, R.gai, R.accordMineur, 0.6) * 0.9 + fenetre(t, R.differenceFin, R.differenceFin + 1.0, 0.2) * 0.8;
-	const froid = fenetre(t, R.melancolique, R.ecoute, 0.6) * 0.9 + fenetre(t, R.differenceFin + 1.0, R.mesure, 0.2) * 0.8;
+	const froid = fenetre(t, R.melancolique, R.ecoute, 0.6) * 0.9 + fenetre(t, R.differenceFin + 1.0, R.attention, 0.2) * 0.8;
 
 	// ---------- A : accroche ----------
 	const accroche = vA > 0.001 && (
@@ -638,7 +674,7 @@ export const Video: React.FC<Props> = ({R}) => {
 			if (i >= 0 && tt >= tk[i]) return C.min;
 		}
 		if (tt >= R.differenceFin && tt < R.differenceFin + 1.0 && [60, 64, 67].includes(m)) return C.maj;
-		if (tt >= R.differenceFin + 1.0 && tt < R.mesure && [60, 63, 67].includes(m)) return C.min;
+		if (tt >= R.differenceFin + 1.0 && tt < R.attention && [60, 63, 67].includes(m)) return C.min;
 		return null;
 	};
 	const arcsF: React.ReactNode[] = [];
@@ -653,6 +689,8 @@ export const Video: React.FC<Props> = ({R}) => {
 		};
 		demiTons(60, 4, R.deDoAMi[1], R.deuxTons1, 'maj', C.maj, '2 TONS', R.accordMineur);
 		demiTons(69, 3, R.deLaADo[1], R.unTonDemi1, 'min', C.min, '1 TON ½', R.ecoute);
+		if (t >= R.avecTierce && t < R.baisse) arcsF.push(<Arc key="tmaj" de={60} a={64} p={clamp((t - R.avecTierce) / 0.6)} couleur={C.maj} label="TIERCE MAJEURE" o={1} grand taille={52} />);
+		if (t >= R.intervalleMib && t < R.differenceFin) arcsF.push(<Arc key="tmin" de={60} a={63} p={clamp((t - R.intervalleMib) / 0.6)} couleur={C.min} label="TIERCE MINEURE" o={1} grand taille={52} />);
 		if (t >= R.devient && t < R.doMineur) {
 			const p = clamp((t - R.devient) / 0.5);
 			arcsF.push(
@@ -667,7 +705,7 @@ export const Video: React.FC<Props> = ({R}) => {
 			{t >= R.gai && t < R.accordMineur && <Soleil x={1560} y={300} s={rebond(t, R.gai) * 1.3} t={t} />}
 			{t >= R.melancolique && t < R.ecoute && <Nuage x={1560} y={300} s={rebond(t, R.melancolique) * 1.2} t={t} />}
 			{t >= R.differenceFin && t < R.differenceFin + 1.0 && <Soleil x={1560} y={300} s={rebond(t, R.differenceFin) * 1.2} t={t} />}
-			{t >= R.differenceFin + 1.0 && t < R.mesure && <Nuage x={1560} y={300} s={rebond(t, R.differenceFin + 1.0) * 1.1} t={t} />}
+			{t >= R.differenceFin + 1.0 && t < R.attention && <Nuage x={1560} y={300} s={rebond(t, R.differenceFin + 1.0) * 1.1} t={t} />}
 			{t >= R.toutSeJoue && t < R.accordMajeur && (
 				<div style={{position: 'absolute', inset: 0, opacity: fenetre(t, R.toutSeJoue, R.accordMajeur, 0.3)}}>
 					{[0, 1, 2].map((j) => (
@@ -683,7 +721,7 @@ export const Video: React.FC<Props> = ({R}) => {
 			)}
 		</>
 	);
-	const vClavier = fenetre(t, R.accordMajeur - 0.3, R.mesure, 0.45);
+	const vClavier = fenetre(t, R.accordMajeur - 0.3, R.attention, 0.45);
 
 	// ---------- G : bulle de mesure ----------
 	let bulle: React.ReactNode = null;
@@ -739,7 +777,7 @@ export const Video: React.FC<Props> = ({R}) => {
 	}
 
 	// ---------- H : à retenir ----------
-	const vH = doux(t, R.retenir, 0.5);
+	const vH = fenetre(t, R.retenir, R.exempleRe, 0.5);
 	const retenir = vH > 0.001 && (
 		<div style={{position: 'absolute', inset: 0, opacity: vH}}>
 			<div style={{position: 'absolute', left: 0, right: 0, top: 50, textAlign: 'center', fontFamily: ANTON, fontSize: 110, color: C.maj, textShadow: `0 0 40px ${C.maj}66`, transform: `scale(${rebond(t, R.retenir)})`}}>À RETENIR</div>
@@ -749,21 +787,207 @@ export const Video: React.FC<Props> = ({R}) => {
 				{a: R.unDiminue, txt: '1 DIMINUÉ', c: C.dim, x: 1360},
 			].map((b, i) =>
 				t >= b.a ? (
-					<div key={i} style={{position: 'absolute', left: b.x, top: 250, transform: `translate(-50%, -50%) scale(${rebond(t, b.a) * (1 - 0.15 * doux(t, R.suite[0], 0.4))})`, padding: '8px 30px', borderRadius: 999, border: `5px solid ${b.c}`, fontFamily: ANTON, fontSize: 52, color: b.c, opacity: 1 - 0.6 * doux(t, R.cetteSuite, 0.4)}}>
+					<div key={i} style={{position: 'absolute', left: b.x, top: 250, transform: `translate(-50%, -50%) scale(${rebond(t, b.a) * (1 - 0.15 * doux(t, R.suite[0], 0.4))})`, padding: '8px 30px', borderRadius: 999, border: `5px solid ${b.c}`, fontFamily: ANTON, fontSize: 52, color: b.c, opacity: 1 - doux(t, R.nousAvons, 0.4)}}>
 						{b.txt}
 					</div>
 				) : null,
 			)}
-			{t >= R.cetteSuite && (
-				<div style={{position: 'absolute', left: 0, right: 0, top: 360, textAlign: 'center', fontFamily: INTER, fontWeight: 800, fontSize: 56, color: C.texte, transform: `scale(${rebond(t, R.cetteSuite)})`}}>
-					La même suite dans <M c={C.maj}>{t >= R.toutes ? 'TOUTES' : 'toutes'}</M> les gammes majeures
+			{t >= R.nousAvons && (
+				<div style={{position: 'absolute', left: 0, right: 0, top: 250, transform: `translateY(-50%) scale(${rebond(t, t >= R.retrouver ? R.retrouver : R.nousAvons)})`, textAlign: 'center', fontFamily: INTER, fontWeight: 800, fontSize: 52, color: C.texte}}>
+					{t < R.retrouver ? (
+						<>Nous avons donc <M c={C.maj}>une suite</M> :</>
+					) : (
+						<>Cette suite se retrouve dans <M c={C.maj}>n'importe quelle tonalité</M></>
+					)}
 				</div>
 			)}
+			<SuiteChips t={t} temps={R.suite} y={390} o={doux(t, R.nousAvons, 0.4)} />
+		</div>
+	);
+
+	// ---------- Attention : Do mineur hors de la tonalité ----------
+	const vAtt = fenetre(t, R.attention, R.enDoMajeur, 0.45);
+	const ALERTE = '#ef4444';
+	const attention = vAtt > 0.001 && (
+		<div style={{position: 'absolute', inset: 0, opacity: vAtt}}>
+			<div style={{position: 'absolute', left: 0, right: 0, top: 50, textAlign: 'center', fontFamily: ANTON, fontSize: 100, color: ALERTE, textShadow: `0 0 30px ${ALERTE}88`, transform: `scale(${rebond(t, R.attention)}) rotate(${Math.sin(t * 22) * 2 * (1 - doux(t, R.attention + 0.6, 0.4))}deg)`}}>
+				⚠ ATTENTION
+			</div>
+			<div style={{position: 'absolute', left: 0, right: 0, top: 235, textAlign: 'center', fontFamily: INTER, fontWeight: 800, fontSize: 40, color: C.maj, opacity: doux(t, R.attention + 0.3)}}>
+				Les notes de la gamme de Do majeur
+			</div>
+			{NOMS.map((n, i) => (
+				<Pastille key={i} x={960 + (i - 3.5) * 175} y={340} txt={n} bg={C.neutre} fg={C.texte} bord={C.maj} s={rebond(t, R.attention + 0.35 + i * 0.05)} w={140} h={80} taille={44} />
+			))}
+			{t >= R.pasPartie && (() => {
+				const p = clamp((t - R.pasPartie) / 0.9);
+				// Mi♭ arrive, tape la rangée et rebondit dehors
+				const x = 1840 - 240 * Math.sin(Math.PI * Math.min(1, p * 1.25)) * 1.1 + (p > 0.8 ? 0 : 0);
+				const xf = p < 1 ? x : 1750;
+				return (
+					<>
+						<Pastille x={xf} y={340} txt="Mi♭" bg={C.min} bord={ALERTE} s={rebond(t, R.pasPartie)} w={140} h={80} taille={44} glow={0.6} />
+						{p >= 0.5 && (
+							<div style={{position: 'absolute', left: 1832, top: 296, transform: `translate(-50%, -50%) scale(${rebond(t, R.pasPartie + 0.45)})`, width: 64, height: 64, borderRadius: 32, background: ALERTE, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: ANTON, fontSize: 44, color: C.texte, boxShadow: `0 0 20px ${ALERTE}`}}>✕</div>
+						)}
+						{p >= 0.5 && (
+							<div style={{position: 'absolute', left: 1750, top: 435, transform: `translate(-50%, -50%) scale(${rebond(t, R.pasPartie + 0.5)})`, fontFamily: INTER, fontWeight: 800, fontSize: 30, color: ALERTE, whiteSpace: 'nowrap'}}>
+								pas dans la gamme !
+							</div>
+						)}
+					</>
+				);
+			})()}
+			{t >= R.accordDoMib && (
+				<div style={{position: 'absolute', inset: 0, opacity: t >= R.nAppartient ? 1 - 0.45 * doux(t, R.nAppartient + 0.3, 0.5) : 1}}>
+					{[0, 1, 2].map((j) => (
+						<Pastille
+							key={j}
+							x={960}
+							y={[880, 770, 660][j]}
+							txt={['Do', 'Mi♭', 'Sol'][j]}
+							bg={j === 1 ? C.min : COUL_TON[j]}
+							bord={j === 1 ? ALERTE : undefined}
+							s={rebond(t, R.accordDoMib + j * 0.12)}
+							w={160}
+							h={90}
+							taille={48}
+						/>
+					))}
+					<div style={{position: 'absolute', left: 960, top: 975, transform: `translate(-50%, -50%) scale(${rebond(t, R.accordDoMib + 0.5)})`, fontFamily: ANTON, fontSize: 48, color: C.min, whiteSpace: 'nowrap'}}>
+						Do mineur
+					</div>
+				</div>
+			)}
+			{t >= R.nAppartient && (
+				<div
+					style={{
+						position: 'absolute',
+						left: 960,
+						top: 770,
+						transform: `translate(-50%, -50%) rotate(-8deg) scale(${1.6 - 0.6 * rebond(t, R.nAppartient)})`,
+						opacity: doux(t, R.nAppartient, 0.25),
+						padding: '14px 34px',
+						border: `8px solid ${ALERTE}`,
+						borderRadius: 18,
+						fontFamily: ANTON,
+						fontSize: 62,
+						lineHeight: 1.1,
+						color: ALERTE,
+						textAlign: 'center',
+						background: 'rgba(11,16,36,0.75)',
+						whiteSpace: 'nowrap',
+					}}
+				>
+					HORS DE LA TONALITÉ
+					<br />
+					DE DO MAJEUR
+				</div>
+			)}
+		</div>
+	);
+
+	// ---------- Exemple en Ré majeur ----------
+	const RL = R.reLignes as {sur: number; notes: number[]; nature: number; tierce: number}[];
+	const vRe = doux(t, R.exempleRe, 0.5);
+	const NOIRE = '#fb923c';
+	const estDiese = (d: number) => d % 7 === 2 || d % 7 === 6;
+	const ligneRe = t >= RL[0].sur && t < R.retrouveBien ? RL.reduce((acc, l, k) => (t >= l.sur ? k : acc), -1) : -1;
+	const sectionRe = vRe > 0.001 && (
+		<div style={{position: 'absolute', inset: 0, opacity: vRe}}>
+			{/* rangée de la gamme de Ré */}
+			<div style={{position: 'absolute', inset: 0, opacity: t < R.retrouveBien ? 1 : 1 - doux(t, R.retrouveBien, 0.5)}}>
+				{Array.from({length: 11}).map((_, i) => {
+					const ta = i < 8 ? R.gammeRe[i] : RL[0].sur;
+					if (t < ta) return null;
+					const role = ligneRe >= 0 ? [ligneRe, ligneRe + 2, ligneRe + 4].indexOf(i) : -1;
+					const allume = role >= 0 && t >= RL[ligneRe].notes[role];
+					const bg = allume ? COUL_TON[role] : estDiese(i) ? NOIRE : C.neutre;
+					return (
+						<Pastille
+							key={i}
+							x={RANGEE11(i)}
+							y={200}
+							txt={nomRe(i)}
+							bg={bg}
+							fg={allume || estDiese(i) ? C.fond : C.texte}
+							bord={role === 0 ? C.racine : allume ? undefined : estDiese(i) ? undefined : C.neutreBord}
+							s={rebond(t, ta) * 0.82}
+							o={i >= 8 ? 0.6 : 1}
+							w={130}
+							h={74}
+							taille={40}
+						/>
+					);
+				})}
+			</div>
+			{/* tours */}
+			{Array.from({length: 7}).map((_, k) => {
+				const l = RL[k];
+				if (t < l.sur) return null;
+				const naturee = t >= l.nature;
+				const coul = COUL_NATURE(k);
+				const o = ligneRe >= 0 && ligneRe !== k ? 0.45 : 1;
+				const pu = t >= R.retrouveBien ? pulse(t, R.suite2[k], 0.6) : 0;
+				return (
+					<div key={k} style={{position: 'absolute', inset: 0, opacity: o}}>
+						{[k, k + 2, k + 4].map((d, j) => {
+							const tk = l.notes[j];
+							if (t < tk) return null;
+							const p = doux(t, tk, 0.55);
+							const x = RANGEE11(d) + (TX(k) - RANGEE11(d)) * p;
+							const y = 200 + (TY[j] - 200) * p - Math.sin(Math.PI * p) * 140 - pu * 40;
+							return <Pastille key={j} x={x} y={y} txt={nomRe(d)} bg={naturee ? coul : COUL_TON[j]} s={(0.85 + 0.15 * p) * (1 + 0.08 * pu)} glow={naturee ? 0.5 + pu : 0} w={140} h={80} taille={44} />;
+						})}
+						<div style={{position: 'absolute', left: TX(k), top: 885, transform: `translate(-50%, -50%) scale(${rebond(t, l.sur)})`, fontFamily: ANTON, fontSize: 50, color: naturee ? coul : C.doux}}>
+							{ROMAINS[k]}
+						</div>
+						{naturee && (
+							<div style={{position: 'absolute', left: TX(k), top: 950, transform: `translate(-50%, -50%) scale(${rebond(t, l.nature) * (1 + 0.15 * pu)})`, padding: '4px 16px', borderRadius: 999, background: coul, fontFamily: INTER, fontWeight: 800, fontSize: 30, color: C.fond, whiteSpace: 'nowrap'}}>
+								{NATURE[k] === 'majeur' ? 'MAJEUR' : NATURE[k]}
+							</div>
+						)}
+						{naturee &&
+							(NATURE[k] === 'majeur' ? (
+								<Soleil x={TX(k)} y={500 - pu * 40} s={rebond(t, l.nature) * 0.8} t={t} />
+							) : NATURE[k] === 'mineur' ? (
+								<Nuage x={TX(k)} y={505 - pu * 40} s={rebond(t, l.nature) * 0.7} t={t} />
+							) : (
+								<Eclair x={TX(k)} y={500} s={rebond(t, l.nature) * 0.8} />
+							))}
+					</div>
+				);
+			})}
+			{/* bulle d'explication de la ligne en cours */}
+			{ligneRe >= 0 && t >= RL[ligneRe].nature && (() => {
+				const k = ligneRe;
+				const l = RL[k];
+				const coul = COUL_NATURE(k);
+				return (
+					<div style={{position: 'absolute', left: 0, right: 0, top: 290, textAlign: 'center', fontFamily: ANTON, fontSize: 64, color: C.texte, whiteSpace: 'nowrap', textShadow: '0 6px 0 rgba(0,0,0,0.4)'}}>
+						<span style={{display: 'inline-block', padding: '2px 24px', borderRadius: 999, background: coul, color: C.fond, transform: `scale(${rebond(t, l.nature)})`}}>
+							ACCORD {NATURE[k] === 'majeur' ? 'MAJEUR' : NATURE[k] === 'mineur' ? 'MINEUR' : 'DIMINUÉ'}
+						</span>
+						{t >= l.tierce && (
+							<span style={{display: 'inline-block', marginLeft: 40, transform: `scale(${rebond(t, l.tierce)})`}}>
+								{k < 6 ? (
+									<>
+										<M c={C.racine}>{nomRe(k)}</M> <M c={C.doux}>→</M> <M c={C.tierce}>{nomRe(k + 2)}</M> <M c={coul}>= {NATURE[k] === 'majeur' ? '2 tons' : '1 ton ½'}</M>
+									</>
+								) : (
+									<M c={C.dim}>2 tierces mineures</M>
+								)}
+							</span>
+						)}
+					</div>
+				);
+			})()}
+			<SuiteChips t={t} temps={R.suite2} y={390} o={doux(t, R.retrouveBien, 0.4)} />
 			{t >= R.toutes &&
-				Array.from({length: 16}).map((_, i) => {
-					const a = (i / 16) * Math.PI * 2;
-					const p = clamp((t - R.toutes) / 1.2);
-					return <div key={i} style={{position: 'absolute', left: 960 + Math.cos(a) * 700 * p, top: 380 + Math.sin(a) * 260 * p, fontSize: 40, color: i % 2 ? C.maj : C.tierce, opacity: 1 - p}}>✦</div>;
+				Array.from({length: 18}).map((_, i) => {
+					const a = (i / 18) * Math.PI * 2;
+					const p = clamp((t - R.toutes) / 1.3);
+					return <div key={i} style={{position: 'absolute', left: 960 + Math.cos(a) * 760 * p, top: 400 + Math.sin(a) * 300 * p, fontSize: 44, color: i % 2 ? C.maj : C.tierce, opacity: 1 - p}}>✦</div>;
 				})}
 		</div>
 	);
@@ -788,6 +1012,8 @@ export const Video: React.FC<Props> = ({R}) => {
 			)}
 			{bulle}
 			{retenir}
+			{attention}
+			{sectionRe}
 
 			{/* ---------- Légendes ---------- */}
 			<Legende t={t} a={R.tierces} b={R.maintenant}>
@@ -821,26 +1047,52 @@ export const Video: React.FC<Props> = ({R}) => {
 			<Legende t={t} a={R.toutSeJoue} b={R.accordMajeur}>
 				Tout se joue entre la <M c={C.racine}>note 1</M> et la <M c={C.tierce}>note 2</M>
 			</Legende>
-			<Legende t={t} a={R.accordMajeur} b={R.accordMineur}>
+			<Legende t={t} a={R.accordMajeur} b={R.tierceMaj}>
 				Accord <M c={C.maj}>majeur</M> : <M c={C.maj}>2 tons</M> d'écart
 			</Legende>
-			<Legende t={t} a={R.accordMineur} b={R.ecoute}>
+			<Legende t={t} a={R.tierceMaj} b={R.accordMineur}>
+				2 tons = une tierce <M c={C.maj}>MAJEURE</M>
+			</Legende>
+			<Legende t={t} a={R.accordMineur} b={R.tierceMin}>
 				Accord <M c={C.min}>mineur</M> : <M c={C.min}>1 ton ½</M> d'écart
 			</Legende>
-			<Legende t={t} a={R.ecoute} b={R.baisse}>
+			<Legende t={t} a={R.tierceMin} b={R.ecoute}>
+				1 ton ½ = une tierce <M c={C.min}>MINEURE</M>
+			</Legende>
+			<Legende t={t} a={R.ecoute} b={R.avecTierce}>
 				Écoute : <M c={C.maj}>Do majeur</M>
+			</Legende>
+			<Legende t={t} a={R.avecTierce} b={R.baisse}>
+				Do → Mi : <M c={C.maj}>tierce majeure</M>
 			</Legende>
 			<Legende t={t} a={R.baisse} b={R.doMineur}>
 				Mi descend d'un demi ton : <M c={C.min}>Mi♭</M>
 			</Legende>
-			<Legende t={t} a={R.doMineur} b={R.difference}>
+			<Legende t={t} a={R.doMineur} b={R.intervalleMib}>
 				<M c={C.min}>Do mineur</M> : Do, Mi♭, Sol
 			</Legende>
-			<Legende t={t} a={R.difference} b={R.mesure}>
+			<Legende t={t} a={R.intervalleMib} b={R.difference}>
+				Do → Mi♭ : <M c={C.min}>tierce mineure</M>
+			</Legende>
+			<Legende t={t} a={R.difference} b={R.attention}>
 				Tu entends <M c={C.maj}>la différence</M> ?
 			</Legende>
-			<Legende t={t} a={R.mesure} b={MES[0].racine - 0.1}>
-				On mesure l'écart <M c={C.racine}>note 1</M> → <M c={C.tierce}>note 2</M>
+			<Legende t={t} a={R.enDoMajeur} b={MES[0].racine - 0.1}>
+				En <M c={C.maj}>Do majeur</M>, on mesure l'écart <M c={C.racine}>note 1</M> → <M c={C.tierce}>note 2</M>
+			</Legende>
+			<Legende t={t} a={R.exempleRe} b={RL[0].sur} taille={64}>
+				Exemple : la gamme de <M c={C.maj}>RÉ MAJEUR</M>
+			</Legende>
+			{RL.map((l, k) => (
+				<Legende key={`re${k}`} t={t} a={l.sur} b={k < 6 ? RL[k + 1].sur : R.retrouveBien} y={60}>
+					<M c={C.doux}>{ROMAINS[k]}</M> · Sur <M c={C.racine}>{nomRe(k)}</M> : <M c={C.racine}>{nomRe(k)}</M>, <M c={C.tierce}>{nomRe(k + 2)}</M>, <M c={C.quinte}>{nomRe(k + 4)}</M>
+				</Legende>
+			))}
+			<Legende t={t} a={R.retrouveBien} b={R.toutes} y={150}>
+				On retrouve bien <M c={C.maj}>la même suite</M> !
+			</Legende>
+			<Legende t={t} a={R.toutes} b={R.duree + 1} y={150}>
+				Et ce sera pareil pour <M c={C.maj}>TOUTES</M> les gammes majeures
 			</Legende>
 		</AbsoluteFill>
 	);

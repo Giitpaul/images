@@ -1,7 +1,7 @@
-Avec seulement sept notes, on peut fabriquer sept accords. Et ils s'entendent tous très bien entre eux. (pause)
+Avec les seules sept notes de la gamme de do majeur, on peut fabriquer sept accords. Et ils s'entendent tous très bien entre eux. (pause)
 Petit rappel : un accord, c'est des tierces empilées. Tu prends une note, tu sautes la suivante, tu prends celle d'après. Et tu recommences.
 Do, Mi, Sol. (pause)
-Maintenant, on fait pareil en partant de chaque note de la gamme. Ça s'appelle harmoniser la gamme. (pause)
+Maintenant, on fait pareil en partant de chaque note de la gamme de do. Ça s'appelle harmoniser la gamme. (pause)
 Sur Do : Do, Mi, Sol.
 Sur Ré : Ré, Fa, La.
 Sur Mi : Mi, Sol, Si.
@@ -12,18 +12,34 @@ Sur Si : Si, Ré, Fa. (pause)
 Ces sept accords forment une famille : la tonalité de Do majeur. Tu peux les enchaîner dans presque n'importe quel ordre, ça sonne bien. (pause)
 Mais ils n'ont pas tous la même couleur. Certains sonnent joyeux, d'autres plus tristes. (pause)
 Tout se joue entre la première et la deuxième note de l'accord.
-Accord majeur : deux tons d'écart. De Do à Mi, deux tons. Ça sonne gai, lumineux. (pause)
-Accord mineur : un ton et demi d'écart. De La à Do, un ton et demi. Ça sonne mélancolique, plus sombre. (pause)
-Écoute. Do majeur : Do, Mi, Sol. (pause)
-Maintenant, je baisse le Mi d'un demi ton. Il devient Mi bémol.
-Do mineur : Do, Mi bémol, Sol. Tu entends la différence ? (pause)
-On mesure les sept accords de la gamme.
+Accord majeur : deux tons d'écart. De Do à Mi, deux tons. On dit que la tierce est majeure.
+Ça sonne gai, lumineux. (pause)
+Accord mineur : un ton et demi d'écart. De La à Do, un ton et demi. On dit que la tierce est mineure. Ça sonne mélancolique, plus sombre. (pause)
+Écoute. Do majeur : Do, Mi, Sol. Avec la tierce majeure Do Mi. (pause)
+Maintenant, si je baisse le Mi d'un demi ton afin de jouer une tierce mineure. Il devient Mi bémol.
+Do mineur égal Do, Mi bémol, Sol. L'intervalle Do Mi bémol est une tierce mineure.
+Tu entends la différence ? (pause)
+Attention, puisque le Mi bémol que je viens d'utiliser pour l'exemple, ne fait pas partie des notes de do majeur, l'accord Do Mi bémol Sol qui est l'accord de Do mineur, n'appartient pas à la tonalité de Do majeur. (pause)
+En Do majeur, on mesure les sept accords de la gamme.
 Do vers Mi : deux tons. Do majeur.
 Ré vers Fa : un ton et demi. Ré mineur.
 Mi vers Sol : un ton et demi. Mi mineur.
 Fa vers La : deux tons. Fa majeur.
 Sol vers Si : deux tons. Sol majeur.
-La vers Do : un ton et demi. La mineur.
+La vers Do : un ton et demi. La mineur. (pause)
 Et Si ? Si vers Ré : un ton et demi. Ré vers Fa : encore un ton et demi. Deux petites tierces à la suite. C'est un accord à part : Si diminué. (pause)
-À retenir. Dans la gamme de Do majeur : trois accords majeurs, Do, Fa et Sol. Trois accords mineurs, Ré, Mi et La. Et un accord diminué, Si. (pause)
-Majeur, mineur, mineur, majeur, majeur, mineur, diminué. Cette suite marche dans toutes les gammes majeures.
+À retenir. Dans la gamme de Do majeur : trois accords majeurs, Do, Fa et Sol.
+Et trois accords mineurs, Ré, Mi et La. Et un accord diminué, le Si. (pause)
+Nous avons donc une suite :
+Majeur, mineur, mineur, majeur, majeur, mineur, diminué.
+On peut retrouver cette suite d'accords majeurs et mineurs dans n'importe quelle tonalité en effectuant le même travail d'harmonisation de la gamme choisie. (pause)
+Exemple avec la gamme de Ré majeur. Ré, Mi, Fa dièse, Sol, La, Si, Do dièse, Ré. (pause)
+Sur Ré : Ré, Fa dièse, La, c'est un accord majeur car la tierce Ré Fa dièse comporte deux tons donc est majeure.
+Sur Mi : Mi, Sol, Si, est un accord mineur car la tierce Mi Sol comporte un ton et demi, est mineure.
+Sur Fa dièse : Fa dièse, La, Do dièse, c'est un accord mineur car la tierce Fa dièse La comporte un ton et demi, est mineure.
+Sur Sol : Sol, Si, Ré, est un accord majeur car la tierce Sol Si comporte deux tons donc est majeure.
+Sur La : La, Do dièse, Mi, accord majeur car la tierce La Do dièse comporte deux tons donc est majeure.
+Sur Si : Si, Ré, Fa dièse, est un accord mineur car la tierce Si Ré comporte un ton et demi, est mineure.
+Et enfin sur Do dièse : Do dièse, Mi, Sol, est un accord diminué car deux tierces mineures se suivent. (pause)
+On retrouve bien notre suite d'accords :
+Majeur, mineur, mineur, majeur, majeur, mineur, diminué. Et ce sera le cas pour n'importe quelle gamme majeure.
