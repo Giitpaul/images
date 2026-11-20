@@ -1,13 +1,8 @@
 import React from "react";
 import { Img, staticFile } from "remotion";
-import { continueRender, delayRender } from "remotion";
 // Police Anton locale (le réseau peut bloquer Google Fonts)
-const attenteAnton = typeof window !== "undefined" ? delayRender("police Anton") : null;
 if (typeof window !== "undefined") {
-  new FontFace("Anton", `url(${staticFile("Anton.woff2")})`).load().then((f) => {
-    document.fonts.add(f);
-    if (attenteAnton !== null) continueRender(attenteAnton);
-  });
+  new FontFace("Anton", `url(${staticFile("Anton.woff2")})`).load().then((f) => document.fonts.add(f));
 }
 import { NOTES, TITLE } from "./data";
 import { INTRO_SUBTITLE } from "./config";
