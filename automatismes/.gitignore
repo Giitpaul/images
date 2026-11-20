@@ -2,3 +2,4 @@ node_modules/
 out/
 work/__pycache__/
 node_modules
+sortie/*.mp4
