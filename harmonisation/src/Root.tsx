@@ -1,10 +1,12 @@
 import React from 'react';
-import {Composition, staticFile} from 'remotion';
+import {Composition, Still, staticFile} from 'remotion';
+import {Miniature} from './Miniature';
 import {Props, Video} from './Video';
 import {FPS, calculerReperes, f} from './synchro.mjs';
 
 export const Root: React.FC = () => (
-	
+	<>
+	<Still id="Miniature" component={Miniature} width={1280} height={720} />
 	<Composition
 		id="Harmonisation"
 		component={Video}
@@ -20,5 +22,5 @@ export const Root: React.FC = () => (
 			return {durationInFrames: f(R.duree), props: {R}};
 		}}
 	/>
-	
+	</>
 );
