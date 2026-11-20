@@ -1,12 +1,14 @@
 import React from 'react';
 import {Composition, Still, staticFile} from 'remotion';
 import {Miniature} from './Miniature';
+import {MiniatureCine} from './MiniatureCine';
 import {Props, Video} from './Video';
 import {FPS, calculerReperes, f} from './synchro.mjs';
 
 export const Root: React.FC = () => (
 	<>
 	<Still id="Miniature" component={Miniature} width={1280} height={720} />
+	<Still id="MiniatureCine" component={MiniatureCine} width={1280} height={720} />
 	<Composition
 		id="Harmonisation"
 		component={Video}
