@@ -68,7 +68,7 @@ export const VideoTab169Prises: React.FC<{ sousTitre: string }> = ({ sousTitre }
     <AbsoluteFill>
       <TabPage page={page} t={t} activeIdx={activeIdx} glow={glow} pills={pills} />
       {titreO > 0.001 && (
-        <AbsoluteFill style={{ background: `rgba(10,13,22,${0.96 * titreO})`, alignItems: "center", justifyContent: "center" }}>
+        <AbsoluteFill style={{ zIndex: 50, background: `rgba(10,13,22,${0.96 * titreO})`, alignItems: "center", justifyContent: "center" }}>
           <div style={{ opacity: titreO, transform: `scale(${titreS})`, textAlign: "center", fontFamily: "Carlito" }}>
             <div style={{ fontSize: 40, letterSpacing: 8, color: "#F3D27A", fontWeight: 700 }}>LES AUTOMATISMES</div>
             <div style={{ fontSize: 150, fontWeight: 700, color: "#F5F5F5", lineHeight: 1.05 }}>{TITLE}</div>
